@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RateCollectionViewCell" customModule="Food_Recipie_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uQP-Iz-bIQ">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2c-zh-95h">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                                <buttonConfiguration key="configuration" style="filled" title="5 ⭐️">
+                                    <color key="baseForegroundColor" name="buttonColor"/>
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="rateBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ihQ-aj-UOb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="s2c-zh-95h" secondAttribute="bottom" id="2lr-Ql-muD"/>
+                            <constraint firstItem="s2c-zh-95h" firstAttribute="leading" secondItem="uQP-Iz-bIQ" secondAttribute="leading" id="R3Z-7L-XZ2"/>
+                            <constraint firstAttribute="trailing" secondItem="s2c-zh-95h" secondAttribute="trailing" id="ay9-Ne-dw1"/>
+                            <constraint firstItem="s2c-zh-95h" firstAttribute="top" secondItem="uQP-Iz-bIQ" secondAttribute="top" id="cNl-s4-q3G"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="uQP-Iz-bIQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="LvR-nQ-Y2Q"/>
+                <constraint firstAttribute="bottom" secondItem="uQP-Iz-bIQ" secondAttribute="bottom" id="eqc-iE-HMD"/>
+                <constraint firstAttribute="trailing" secondItem="uQP-Iz-bIQ" secondAttribute="trailing" id="mss-8C-Msj"/>
+                <constraint firstItem="uQP-Iz-bIQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="x3L-pA-pcE"/>
+            </constraints>
+            <connections>
+                <outlet property="rateButton" destination="s2c-zh-95h" id="YKm-4L-U6M"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="buttonColor">
+            <color red="0.067000001668930054" green="0.58399999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

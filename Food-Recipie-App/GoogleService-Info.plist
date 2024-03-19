@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>398732545846-6o7qgigdp8afd0s120a6uqi50iqi728f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.398732545846-6o7qgigdp8afd0s120a6uqi50iqi728f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAgr4rEIjbCxc0U8MjxrosIuECubfogmLI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>398732545846</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yourCompany.Food-Recipie-App</string>
+	<key>PROJECT_ID</key>
+	<string>food-recipe-app-90bd9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>food-recipe-app-90bd9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:398732545846:ios:82e68f52a34b9ce6a26d97</string>
+</dict>
+</plist>

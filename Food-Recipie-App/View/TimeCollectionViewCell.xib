@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TimeCollectionViewCell" customModule="Food_Recipie_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAh-fx-erj">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-8i-OgT">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                                <buttonConfiguration key="configuration" style="filled" title="All">
+                                    <color key="baseForegroundColor" name="buttonColor"/>
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="timeBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="omz-ZG-zpx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lnd-8i-OgT" firstAttribute="top" secondItem="MAh-fx-erj" secondAttribute="top" id="Qly-2X-6Qs"/>
+                            <constraint firstAttribute="trailing" secondItem="Lnd-8i-OgT" secondAttribute="trailing" id="WMu-WZ-O4I"/>
+                            <constraint firstAttribute="bottom" secondItem="Lnd-8i-OgT" secondAttribute="bottom" id="bpv-0a-ibF"/>
+                            <constraint firstItem="Lnd-8i-OgT" firstAttribute="leading" secondItem="MAh-fx-erj" secondAttribute="leading" id="iJU-jK-GJ8"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="MAh-fx-erj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cig-Te-wIz"/>
+                <constraint firstAttribute="trailing" secondItem="MAh-fx-erj" secondAttribute="trailing" id="DeE-Tj-jZe"/>
+                <constraint firstAttribute="bottom" secondItem="MAh-fx-erj" secondAttribute="bottom" id="R0F-R6-hTE"/>
+                <constraint firstItem="MAh-fx-erj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eYF-f9-XSJ"/>
+            </constraints>
+            <connections>
+                <outlet property="timeButton" destination="Lnd-8i-OgT" id="qac-LU-ZJi"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="81.361607142857139"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="buttonColor">
+            <color red="0.067000001668930054" green="0.58399999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
