@@ -19,8 +19,6 @@ class SplashViewController: UIViewController {
         // Do any additional setup after loading the view.
         gradientLayer = CAGradientLayer()
         if let gradientConfigurationBounds = gradient?.bounds {
-            //let gradientLayer = CAGradientLayer()
-            
             gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
             gradientLayer.locations = [0.0, 1.0]
             
@@ -40,15 +38,13 @@ class SplashViewController: UIViewController {
     }
     
     @IBAction func startBtnPress(_ sender: UIButton) {
-        print("Button Prssed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
+        let initialViewController = HomeViewModel.shared.navigateToInitialScreen()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-               return
-           }
-        appDelegate.window?.rootViewController = loginViewController
+            fatalError("AppDelegate not found")
+        }
+        appDelegate.window?.rootViewController = initialViewController
         appDelegate.window?.makeKeyAndVisible()
     }
-    
+
     
 }

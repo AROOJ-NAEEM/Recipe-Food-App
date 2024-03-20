@@ -25,5 +25,23 @@ class ProfileViewController: UIViewController {
         }
     }
 
+    @IBAction func logOutPressed(_ sender: UIButton) {
+        print("pressed")
+        handleSignOut()
+    }
+    func handleSignOut() {
+        HomeViewModel.shared.signOut {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else {
+                return
+            }
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = loginViewController
+                appDelegate.window?.makeKeyAndVisible()
+            }
+        }
+        
+    }
 
+    
 }
