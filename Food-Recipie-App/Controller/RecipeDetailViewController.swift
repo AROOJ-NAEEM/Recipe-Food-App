@@ -25,7 +25,8 @@ class RecipeDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let img = recipeDetailViewModel.img {
-            recipeImg.load(url: img)
+            //recipeImg.load(url: img)
+            recipeImg.sd_setImage(with: img, placeholderImage: UIImage(named: "Recipe's Image"))
         }
         recipeName.text = recipeDetailViewModel.name
         timeToCook.text = "⏱ \(recipeDetailViewModel.time)"
@@ -52,7 +53,8 @@ class RecipeDetailViewController: UIViewController {
     @IBAction func shareRecipeBtn(_ sender: UIButton) {
         let recipe = recipeName.text
         if let img = recipeDetailViewModel.img {
-            recipeImg.load(url: img)
+            //recipeImg.load(url: img)
+            recipeImg.sd_setImage(with: img, placeholderImage: UIImage(named: "Recipe's Image"))
         }
         let image: UIImageView = recipeImg
         

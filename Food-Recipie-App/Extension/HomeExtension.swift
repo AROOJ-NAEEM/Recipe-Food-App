@@ -46,7 +46,8 @@ extension HomeViewController: UICollectionViewDataSource {
             cell.recipeRating.text = "\(originFilteredRecipes[indexPath.row].rating)"
             if let imageUrl = URL(string: originFilteredRecipes[indexPath.row].image) {
                 print("Loading image from \(imageUrl)")
-                cell.recipeImage.load(url: imageUrl)
+                //cell.recipeImage.load(url: imageUrl)
+                cell.recipeImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "Recipe's Image"))
             } else {
                 print("Invalid image URL")
             }
@@ -62,13 +63,15 @@ extension HomeViewController: UICollectionViewDataSource {
         else if (collectionView == self.newRecipeCollectionView) {
             print("2nd collection view")
             let cell2 = newRecipeCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NewRecipeCollectionViewCell
-            if let imageUrl = URL(string: filteredRecipes[indexPath.row].image), let creatorImageUrl =  URL(string: filteredRecipes[indexPath.row].creatorImage) {
+            /*if let imageUrl = URL(string: filteredRecipes[indexPath.row].image), let creatorImageUrl =  URL(string: filteredRecipes[indexPath.row].creatorImage) {
                 print("Loading image from \(imageUrl)")
                 cell2.recipeImage.load(url: imageUrl)
                 cell2.creatorImage.load(url: creatorImageUrl)
             } else {
                 print("Invalid image URL")
-            }
+            }*/
+            cell2.recipeImage.sd_setImage(with: URL(string: filteredRecipes[indexPath.row].image), placeholderImage: UIImage(named: "Recipe's Image"))
+            cell2.creatorImage.sd_setImage(with: URL(string: filteredRecipes[indexPath.row].image), placeholderImage: UIImage(named: "Creator's Image"))
             cell2.recipeName.text = filteredRecipes[indexPath.row].name
             cell2.timeToCook.text = "⏱ \(filteredRecipes[indexPath.row].requiredTime)"
             cell2.creatorName.text = "By \(filteredRecipes[indexPath.row].creator)"
@@ -240,27 +243,28 @@ extension HomeViewController: RecipeCellDelegate {
     }
 }
 
-extension UIImageView {
-    func load(url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            if let error = error {
-                print("Error downloading image: \(error)")
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received for image")
-                return
-            }
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self?.image = image
-                }
-            } else {
-                print("Invalid image data")
-            }
-        }
-        task.resume()
-    }
-}
+//extension UIImageView {
+//    func load(url: URL) {
+//        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+//            if let error = error {
+//                print("Error downloading image: \(error)")
+//                return
+//            }
+//
+//            guard let data = data else {
+//                print("No data received for image")
+//                return
+//            }
+//            if let image = UIImage(data: data) {
+//                DispatchQueue.main.async {
+//                    self?.image = image
+//                }
+//            } else {
+//                print("Invalid image data")
+//            }
+//        }
+//        task.resume()
+//    }
+//
+//}
 

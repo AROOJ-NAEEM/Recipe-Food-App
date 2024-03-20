@@ -1567,25 +1567,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_screen" translatesAutoresizingMaskIntoConstraints="NO" id="Z9r-7Q-eDp">
-                                <rect key="frame" x="0.0" y="0.0" width="408.66666666666669" height="926"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNP-lL-6so">
-                                <rect key="frame" x="0.0" y="0.0" width="408.66666666666669" height="926"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100K+ Premium Recipe " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tb-FS-63h">
-                                        <rect key="frame" x="24" y="189" width="374.66666666666669" height="34"/>
+                                        <rect key="frame" x="4.6666666666666572" y="189" width="413.33333333333337" height="34"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get  Cooking" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-NH-bAg">
-                                        <rect key="frame" x="117.99999999999999" y="572" width="177.66666666666663" height="110"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="46"/>
+                                        <rect key="frame" x="118" y="610.33333333333337" width="197" height="71.666666666666629"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple way to find Tasty Recipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epd-vU-upB">
-                                        <rect key="frame" x="10" y="694" width="388.66666666666669" height="27"/>
+                                        <rect key="frame" x="10" y="694" width="408" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1598,7 +1598,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7k-jE-yiA">
-                                        <rect key="frame" x="22.333333333333343" y="767" width="346.33333333333326" height="50"/>
+                                        <rect key="frame" x="3" y="767" width="385" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="243" id="51r-rg-Oge"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="fju-hw-0BD"/>
@@ -1622,7 +1622,6 @@
                                     <constraint firstItem="Epd-vU-upB" firstAttribute="leading" secondItem="eNP-lL-6so" secondAttribute="leading" constant="10" id="FCV-fl-ceW"/>
                                     <constraint firstItem="2Tb-FS-63h" firstAttribute="top" secondItem="8z6-51-ztV" secondAttribute="bottom" constant="11" id="HqF-m4-mv5"/>
                                     <constraint firstItem="8z6-51-ztV" firstAttribute="top" secondItem="eNP-lL-6so" secondAttribute="top" constant="99" id="I2U-GE-QWY"/>
-                                    <constraint firstAttribute="trailing" secondItem="8z6-51-ztV" secondAttribute="trailing" constant="160" id="I5r-u5-iOH"/>
                                     <constraint firstAttribute="trailing" secondItem="2Tb-FS-63h" secondAttribute="trailing" constant="10" id="Kfh-e6-6zM"/>
                                     <constraint firstAttribute="trailing" secondItem="Epd-vU-upB" secondAttribute="trailing" constant="10" id="LEn-3W-W3o"/>
                                     <constraint firstItem="N7k-jE-yiA" firstAttribute="centerX" secondItem="2Tb-FS-63h" secondAttribute="centerX" constant="-15.75" id="V5R-lk-GjA"/>

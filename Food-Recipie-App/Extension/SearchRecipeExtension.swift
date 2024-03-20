@@ -18,7 +18,8 @@ extension SearchRecipeViewController: UICollectionViewDataSource {
         let cell = searchRecipeCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SearchRecipeCollectionViewCell
         if let imageUrl = URL(string: filterRecipes[indexPath.row].image) {
             print("Loading image from \(imageUrl)")
-            cell.recipeImage.load(url: imageUrl)
+            //cell.recipeImage.load(url: imageUrl)
+            cell.recipeImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "Recipe's Image"))
         } else {
             print("Invalid image URL")
         }

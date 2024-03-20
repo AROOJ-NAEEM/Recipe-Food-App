@@ -773,6 +773,9 @@ PODS:
   - RealmSwift (10.39.0):
     - Realm (= 10.39.0)
   - RecaptchaInterop (100.0.0)
+  - SDWebImage (5.19.0):
+    - SDWebImage/Core (= 5.19.0)
+  - SDWebImage/Core (5.19.0)
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
@@ -780,6 +783,7 @@ DEPENDENCIES:
   - FirebaseFirestore
   - GoogleSignIn
   - RealmSwift (= 10.39.0)
+  - SDWebImage
   - SideMenu
 
 SPEC REPOS:
@@ -807,6 +811,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RecaptchaInterop
+    - SDWebImage
     - SideMenu
 
 SPEC CHECKSUMS:
@@ -833,8 +838,9 @@ SPEC CHECKSUMS:
   Realm: c1334b2243da676ce77c28d4f21a67c8d561a9f9
   RealmSwift: 618cb32040ce8de250ae6c509218ee0ead17dcf6
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  SDWebImage: 981fd7e860af070920f249fd092420006014c3eb
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 346515d8bf86f5927cfcaea2226dc72cb1c45fec
+PODFILE CHECKSUM: d8fce845bdc8142cc298c7706df2a02e967c13bb
 
 COCOAPODS: 1.15.2

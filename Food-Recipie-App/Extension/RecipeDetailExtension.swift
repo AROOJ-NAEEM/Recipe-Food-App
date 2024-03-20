@@ -30,7 +30,8 @@ extension RecipeDetailViewController: UITableViewDataSource {
                         let ingredientDetail = ingredientValues[indexPath.row]
                         if let imageURL = URL(string: ingredientDetail.keys.first!), let weight = ingredientDetail.values.first {
                             cell.ingredentWeight.text = weight
-                            cell.ingredientImage.load(url: imageURL)
+                            //cell.ingredientImage.load(url: imageURL)
+                            cell.ingredientImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "Recipe's Image"))
                         } else {
                             print("Invalid image URL")
                         }
