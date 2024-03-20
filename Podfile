@@ -10,5 +10,6 @@ target 'Food-Recipie-App' do
   pod 'FirebaseFirestore'
   pod 'GoogleSignIn'
   pod 'RealmSwift' , '10.39.0'
+  pod 'SideMenu'
 
 end

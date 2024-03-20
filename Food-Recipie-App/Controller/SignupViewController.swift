@@ -14,7 +14,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPassTextField: UITextField!
-    
+    @IBOutlet weak var termAndConditionLabel: UIButton!
     let viewModel = SignupViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,10 @@ class SignupViewController: UIViewController {
         guard let email = emailTextField.text,
               let password = passwordTextField.text,
               let confirmPassword = confirmPassTextField.text,
-              let userName = userName.text
+              let userName = userName.text,
+              let btnImage = termAndConditionLabel.currentImage
         else { return }
-        viewModel.signUp(email: email, password: password, confirmPassword: confirmPassword, userName: userName) { success, errorMessage in
+        viewModel.signUp(email: email, password: password, confirmPassword: confirmPassword, userName: userName, btnImage: btnImage) { success, errorMessage in
             if success {
                 //Nagivate to home view controller
                 DispatchQueue.main.async {
@@ -75,6 +76,13 @@ class SignupViewController: UIViewController {
            }
         appDelegate.window?.rootViewController = loginViewController
         appDelegate.window?.makeKeyAndVisible()
+    }
+    @IBAction func termAndConditionPressed(_ sender: UIButton) {
+        if sender.currentImage == UIImage(systemName: "square") {
+            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "square"), for: .normal)
+        }
     }
     func displayError(_ errorMessage: String?) {
         let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)

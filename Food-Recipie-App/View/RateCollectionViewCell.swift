@@ -8,24 +8,34 @@
 import UIKit
 
 class RateCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var rateButton: UIButton!
+    @IBOutlet private weak var rateLabel: UILabel!
+    override var isSelected: Bool {
+        didSet{
+            toggleBackgroundColor()
+            FilterManager.shared.filter.rate = self.rateLabel.text ?? ""
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         if let buttonColor = UIColor(named: "buttonColor") {
-            rateButton.layer.borderWidth = 1.0
-            rateButton.layer.cornerRadius = 8.0
-            rateButton.layer.borderColor = buttonColor.cgColor
+            self.layer.borderWidth = 1.0
+            self.layer.cornerRadius = 8.0
+            self.layer.borderColor = buttonColor.cgColor
         } else {
             print("Error: Unable to retrieve color named 'buttonColor'")
         }
     }
-
-    @IBAction func rateBtnPressed(_ sender: UIButton) {
-        FilterManager.shared.filter.rate = sender.currentTitle ?? ""
-        UIView.animate(withDuration: 0.5) {
-            sender.backgroundColor = UIColor(named: "buttonColor")
-            sender.tintColor = .white
+    private func toggleBackgroundColor() {
+        if isSelected {
+            self.backgroundColor = UIColor(named: "buttonColor")
+        }else {
+            self.backgroundColor = .white
         }
     }
+    
+    func configureColor(label: String) {
+        self.rateLabel.text = label
+    }
+
 }

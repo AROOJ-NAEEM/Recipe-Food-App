@@ -80,6 +80,8 @@ extension SavedRecipeViewController: UICollectionViewDelegate {
 
 extension SavedRecipeViewController: SavedRecipeDelegate {
     func recipesDidChange() {
-        savedRecipeCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.savedRecipeCollectionView.reloadData()
+        }
     }
 }

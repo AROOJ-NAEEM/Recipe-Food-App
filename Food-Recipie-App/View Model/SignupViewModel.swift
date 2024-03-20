@@ -12,31 +12,35 @@ import GoogleSignIn
 
 class SignupViewModel {
     private let databaseManager = DatabaseManager.shared
-    func signUp(email: String, password: String, confirmPassword: String, userName: String, completion: @escaping(Bool, String?) -> Void) {
-        if password == confirmPassword {
-                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                    if let e = error {
-                        completion(false, e.localizedDescription)
-                    } else {
-                    if !userName.isEmpty {
-                        if let userUID = Auth.auth().currentUser?.uid {
-                            self.databaseManager.createUser(withUID: userUID, userName: userName) { error in
-                                if let error = error {
-                                    completion(false, "Error creating user document: \(error.localizedDescription)")
-                                } else {
-                                    completion(true, nil)
+    func signUp(email: String, password: String, confirmPassword: String, userName: String, btnImage: UIImage, completion: @escaping(Bool, String?) -> Void) {
+        if btnImage == UIImage(systemName: "checkmark.square") {
+            if password == confirmPassword {
+                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                        if let e = error {
+                            completion(false, e.localizedDescription)
+                        } else {
+                        if !userName.isEmpty {
+                            if let userUID = Auth.auth().currentUser?.uid {
+                                self.databaseManager.createUser(withUID: userUID, userName: userName) { error in
+                                    if let error = error {
+                                        completion(false, "Error creating user document: \(error.localizedDescription)")
+                                    } else {
+                                        completion(true, nil)
+                                    }
                                 }
+                            } else {
+                                completion(false, "User UID is nil")
                             }
                         } else {
-                            completion(false, "User UID is nil")
+                            completion(false, "Invalid User Name!")
                         }
-                    } else {
-                        completion(false, "Invalid User Name!")
                     }
                 }
+            } else {
+                completion(false, "Password does not matched.")
             }
         } else {
-            completion(false, "Password does not matched.")
+            completion(false, "Accept terms and conditions first!")
         }
     }
     

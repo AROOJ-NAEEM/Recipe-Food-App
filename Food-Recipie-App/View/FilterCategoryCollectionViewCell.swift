@@ -9,26 +9,34 @@ import UIKit
 
 class FilterCategoryCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var categoryLabel: UILabel!
+    override var isSelected: Bool {
+        didSet{
+            toggleBackgroundColor()
+            FilterManager.shared.filter.category = self.categoryLabel.text ?? ""
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         if let buttonColor = UIColor(named: "buttonColor") {
-            categoryButton.layer.borderWidth = 1.0
-            categoryButton.layer.cornerRadius = 8.0
-            categoryButton.layer.borderColor = buttonColor.cgColor
+            self.layer.borderWidth = 1.0
+            self.layer.cornerRadius = 8.0
+            self.layer.borderColor = buttonColor.cgColor
         } else {
             print("Error: Unable to retrieve color named 'buttonColor'")
         }
     }
-
-    @IBAction func ctegoryBtnPressed(_ sender: UIButton) {
-        //sender.backgroundColor = sender.backgroundColor == UIColor(named: "buttonColor") ? .white : UIColor(named: "buttonColor")
-        UIView.animate(withDuration: 0.5) {
-            sender.backgroundColor = UIColor(named: "buttonColor")
-            sender.tintColor = .white
+    private func toggleBackgroundColor() {
+        if isSelected {
+            self.backgroundColor = UIColor(named: "buttonColor")
+        }else {
+            self.backgroundColor = .white
         }
-        FilterManager.shared.filter.category = sender.currentTitle ?? ""
+    }
+    
+    func configureColor(label: String) {
+        self.categoryLabel.text = label
     }
    
 }

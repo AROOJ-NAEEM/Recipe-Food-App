@@ -3,8 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,28 +20,23 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAh-fx-erj">
                         <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-8i-OgT">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
-                                <buttonConfiguration key="configuration" style="filled" title="All">
-                                    <color key="baseForegroundColor" name="buttonColor"/>
-                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="timeBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="omz-ZG-zpx"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdu-fo-dFQ">
+                                <rect key="frame" x="16" y="5" width="28.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" name="buttonColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Lnd-8i-OgT" firstAttribute="top" secondItem="MAh-fx-erj" secondAttribute="top" id="Qly-2X-6Qs"/>
-                            <constraint firstAttribute="trailing" secondItem="Lnd-8i-OgT" secondAttribute="trailing" id="WMu-WZ-O4I"/>
-                            <constraint firstAttribute="bottom" secondItem="Lnd-8i-OgT" secondAttribute="bottom" id="bpv-0a-ibF"/>
-                            <constraint firstItem="Lnd-8i-OgT" firstAttribute="leading" secondItem="MAh-fx-erj" secondAttribute="leading" id="iJU-jK-GJ8"/>
+                            <constraint firstItem="Zdu-fo-dFQ" firstAttribute="centerY" secondItem="MAh-fx-erj" secondAttribute="centerY" id="C63-fX-OGt"/>
+                            <constraint firstItem="Zdu-fo-dFQ" firstAttribute="centerX" secondItem="MAh-fx-erj" secondAttribute="centerX" id="cYI-BL-fwW"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="MAh-fx-erj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cig-Te-wIz"/>
                 <constraint firstAttribute="trailing" secondItem="MAh-fx-erj" secondAttribute="trailing" id="DeE-Tj-jZe"/>
@@ -49,7 +44,7 @@
                 <constraint firstItem="MAh-fx-erj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eYF-f9-XSJ"/>
             </constraints>
             <connections>
-                <outlet property="timeButton" destination="Lnd-8i-OgT" id="qac-LU-ZJi"/>
+                <outlet property="timeLabel" destination="Zdu-fo-dFQ" id="G1Y-YT-fr1"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="81.361607142857139"/>
         </collectionViewCell>
@@ -58,8 +53,5 @@
         <namedColor name="buttonColor">
             <color red="0.067000001668930054" green="0.58399999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

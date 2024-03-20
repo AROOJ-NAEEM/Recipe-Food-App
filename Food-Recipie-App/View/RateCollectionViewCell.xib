@@ -3,8 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,23 +20,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uQP-Iz-bIQ">
                         <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2c-zh-95h">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
-                                <buttonConfiguration key="configuration" style="filled" title="5 ⭐️">
-                                    <color key="baseForegroundColor" name="buttonColor"/>
-                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="rateBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ihQ-aj-UOb"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUA-iY-lZ2">
+                                <rect key="frame" x="16" y="5" width="28.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" name="buttonColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="s2c-zh-95h" secondAttribute="bottom" id="2lr-Ql-muD"/>
-                            <constraint firstItem="s2c-zh-95h" firstAttribute="leading" secondItem="uQP-Iz-bIQ" secondAttribute="leading" id="R3Z-7L-XZ2"/>
-                            <constraint firstAttribute="trailing" secondItem="s2c-zh-95h" secondAttribute="trailing" id="ay9-Ne-dw1"/>
-                            <constraint firstItem="s2c-zh-95h" firstAttribute="top" secondItem="uQP-Iz-bIQ" secondAttribute="top" id="cNl-s4-q3G"/>
+                            <constraint firstItem="PUA-iY-lZ2" firstAttribute="centerX" secondItem="uQP-Iz-bIQ" secondAttribute="centerX" id="bli-0Q-pbE"/>
+                            <constraint firstItem="PUA-iY-lZ2" firstAttribute="centerY" secondItem="uQP-Iz-bIQ" secondAttribute="centerY" id="cvt-n0-JmD"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -49,7 +43,7 @@
                 <constraint firstItem="uQP-Iz-bIQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="x3L-pA-pcE"/>
             </constraints>
             <connections>
-                <outlet property="rateButton" destination="s2c-zh-95h" id="YKm-4L-U6M"/>
+                <outlet property="rateLabel" destination="PUA-iY-lZ2" id="ttb-DD-L9Z"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
         </collectionViewCell>
@@ -58,8 +52,5 @@
         <namedColor name="buttonColor">
             <color red="0.067000001668930054" green="0.58399999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

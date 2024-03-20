@@ -180,6 +180,7 @@ extension HomeViewController: FilterButtonDelegate {
         let timeFilter = filter.time
         let rateFilter = filter.rate
         let categoryFilter = filter.category
+        print(filter)
         if categoryFilter == "All" {
             originFilteredRecipes = Recipe.all
         } else {

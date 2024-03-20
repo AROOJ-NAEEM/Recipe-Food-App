@@ -23,22 +23,21 @@ extension FilterViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == timeCollectionView {
             let cell = timeCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TimeCollectionViewCell
-            cell.timeButton.setTitle(timeArray[indexPath.row], for: .normal)
+            cell.configure(title: timeArray[indexPath.row])
             return cell
         } else if collectionView == rateCollectionView {
             let cell = rateCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! RateCollectionViewCell
-            cell.rateButton.setTitle(rateArray[indexPath.row], for: .normal)
+            cell.configureColor(label: rateArray[indexPath.row])
             return cell
         } else {
             let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! FilterCategoryCollectionViewCell
-            cell.categoryButton.setTitle(categoryArray[indexPath.row], for: .normal)
+            cell.configureColor(label: categoryArray[indexPath.row])
             return cell
         }
     }
     
     
 }
-
 
 extension FilterViewController: UISheetPresentationControllerDelegate {
     override var sheetPresentationController: UISheetPresentationController? {

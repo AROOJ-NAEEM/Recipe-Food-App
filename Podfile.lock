@@ -773,12 +773,14 @@ PODS:
   - RealmSwift (10.39.0):
     - Realm (= 10.39.0)
   - RecaptchaInterop (100.0.0)
+  - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - GoogleSignIn
   - RealmSwift (= 10.39.0)
+  - SideMenu
 
 SPEC REPOS:
   trunk:
@@ -805,6 +807,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RecaptchaInterop
+    - SideMenu
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
@@ -830,7 +833,8 @@ SPEC CHECKSUMS:
   Realm: c1334b2243da676ce77c28d4f21a67c8d561a9f9
   RealmSwift: 618cb32040ce8de250ae6c509218ee0ead17dcf6
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 0df3f60a3328be36869b077f11626358a563853c
+PODFILE CHECKSUM: 346515d8bf86f5927cfcaea2226dc72cb1c45fec
 
 COCOAPODS: 1.15.2

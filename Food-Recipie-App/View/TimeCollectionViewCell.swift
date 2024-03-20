@@ -5,27 +5,46 @@
 //  Created by Dev on 3/18/24.
 //
 
+// Todos
+/*
+- Auth state
+- SDWebimage to load images in cells
+- Tweak UI where ever is needed.
+- Add loader while user is being loggin in.
+*/
 import UIKit
 
 class TimeCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet private weak var timeLabel: UILabel!
+    
+    override var isSelected: Bool {
+        didSet{
+            toggleBackgroundColor()
+            FilterManager.shared.filter.time = self.timeLabel.text ?? ""
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         if let buttonColor = UIColor(named: "buttonColor") {
-            timeButton.layer.borderWidth = 1.0
-            timeButton.layer.cornerRadius = 8.0
-            timeButton.layer.borderColor = buttonColor.cgColor
+            self.layer.borderWidth = 1.0
+            self.layer.cornerRadius = 8.0
+            self.layer.borderColor = buttonColor.cgColor
         } else {
             print("border not set")
         }
     }
-
-    @IBAction func timeBtnPressed(_ sender: UIButton) {
-        FilterManager.shared.filter.time = sender.currentTitle ?? ""
-        UIView.animate(withDuration: 0.5) {
-            sender.backgroundColor = UIColor(named: "buttonColor")
-            sender.tintColor = .white
+    
+    private func toggleBackgroundColor() {
+        if isSelected {
+            self.backgroundColor = UIColor(named: "buttonColor")
+        }else {
+            self.backgroundColor = .white
         }
+    }
+    
+    func configure(title: String) {
+        self.timeLabel.text = title
     }
 }

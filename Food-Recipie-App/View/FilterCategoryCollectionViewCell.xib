@@ -3,8 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,23 +20,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1A-hd-J4v">
                         <rect key="frame" x="0.0" y="0.0" width="102" height="27"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKq-hs-eHU">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="27"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Local Dish">
-                                    <color key="baseForegroundColor" name="buttonColor"/>
-                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="ctegoryBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="x1f-FX-HDJ"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxA-Sm-hkx">
+                                <rect key="frame" x="37" y="7" width="28.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" name="buttonColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jKq-hs-eHU" firstAttribute="top" secondItem="E1A-hd-J4v" secondAttribute="top" id="A6W-98-lRf"/>
-                            <constraint firstAttribute="trailing" secondItem="jKq-hs-eHU" secondAttribute="trailing" constant="2" id="JhB-zZ-uvA"/>
-                            <constraint firstAttribute="bottom" secondItem="jKq-hs-eHU" secondAttribute="bottom" id="UfV-Qw-IhV"/>
-                            <constraint firstItem="jKq-hs-eHU" firstAttribute="leading" secondItem="E1A-hd-J4v" secondAttribute="leading" id="bhx-cL-927"/>
+                            <constraint firstItem="LxA-Sm-hkx" firstAttribute="centerX" secondItem="E1A-hd-J4v" secondAttribute="centerX" id="08o-rL-UzW"/>
+                            <constraint firstItem="LxA-Sm-hkx" firstAttribute="centerY" secondItem="E1A-hd-J4v" secondAttribute="centerY" id="U42-Sg-PZX"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -50,7 +44,7 @@
             </constraints>
             <size key="customSize" width="112" height="106"/>
             <connections>
-                <outlet property="categoryButton" destination="jKq-hs-eHU" id="gl5-d3-AQq"/>
+                <outlet property="categoryLabel" destination="LxA-Sm-hkx" id="O9F-1z-7ZD"/>
             </connections>
             <point key="canvasLocation" x="72.463768115942031" y="100.11160714285714"/>
         </collectionViewCell>
@@ -59,8 +53,5 @@
         <namedColor name="buttonColor">
             <color red="0.067000001668930054" green="0.58399999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

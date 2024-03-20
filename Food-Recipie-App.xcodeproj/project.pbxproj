@@ -73,7 +73,18 @@
 		D7B5861F2BA985EB002DED77 /* FilterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5861E2BA985EB002DED77 /* FilterExtension.swift */; };
 		D7B586212BA98C87002DED77 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586202BA98C87002DED77 /* TabBarController.swift */; };
 		D7B586232BA9C5E0002DED77 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586222BA9C5E0002DED77 /* ForgetPasswordViewController.swift */; };
+		D7B5862B2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5862A2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7B5862C2BAAF1D7002DED77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D764F77C2B99D6B2009CA39C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D764F7832B99D6B2009CA39C;
+			remoteInfo = "Food-Recipie-App";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4DC26888E5DD92B82DCAD4CE /* Pods-Food-Recipie-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food-Recipie-App.release.xcconfig"; path = "Target Support Files/Pods-Food-Recipie-App/Pods-Food-Recipie-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +156,8 @@
 		D7B5861E2BA985EB002DED77 /* FilterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterExtension.swift; sourceTree = "<group>"; };
 		D7B586202BA98C87002DED77 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D7B586222BA9C5E0002DED77 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		D7B586282BAAF1D6002DED77 /* Food-Recipie-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Food-Recipie-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7B5862A2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food_Recipie_AppTests.swift; sourceTree = "<group>"; };
 		FD87EAFD5F24FDDFD61F62F7 /* Pods-Food-Recipie-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food-Recipie-App.debug.xcconfig"; path = "Target Support Files/Pods-Food-Recipie-App/Pods-Food-Recipie-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +167,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B9005904EFFC617D9BD6C5 /* Pods_Food_Recipie_App.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7B586252BAAF1D6002DED77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				D764F7862B99D6B2009CA39C /* Food-Recipie-App */,
+				D7B586292BAAF1D7002DED77 /* Food-Recipie-AppTests */,
 				D764F7852B99D6B2009CA39C /* Products */,
 				D2CEC8A92CDD5CB1FAC2DD1C /* Pods */,
 				C190DA8F41EA4E688241A91D /* Frameworks */,
@@ -191,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				D764F7842B99D6B2009CA39C /* Food-Recipie-App.app */,
+				D7B586282BAAF1D6002DED77 /* Food-Recipie-AppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,6 +346,14 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
+		D7B586292BAAF1D7002DED77 /* Food-Recipie-AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7B5862A2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift */,
+			);
+			path = "Food-Recipie-AppTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,6 +376,24 @@
 			productReference = D764F7842B99D6B2009CA39C /* Food-Recipie-App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D7B586272BAAF1D6002DED77 /* Food-Recipie-AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7B586302BAAF1D7002DED77 /* Build configuration list for PBXNativeTarget "Food-Recipie-AppTests" */;
+			buildPhases = (
+				D7B586242BAAF1D6002DED77 /* Sources */,
+				D7B586252BAAF1D6002DED77 /* Frameworks */,
+				D7B586262BAAF1D6002DED77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7B5862D2BAAF1D7002DED77 /* PBXTargetDependency */,
+			);
+			name = "Food-Recipie-AppTests";
+			productName = "Food-Recipie-AppTests";
+			productReference = D7B586282BAAF1D6002DED77 /* Food-Recipie-AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -358,6 +406,10 @@
 				TargetAttributes = {
 					D764F7832B99D6B2009CA39C = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					D7B586272BAAF1D6002DED77 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = D764F7832B99D6B2009CA39C;
 					};
 				};
 			};
@@ -375,6 +427,7 @@
 			projectRoot = "";
 			targets = (
 				D764F7832B99D6B2009CA39C /* Food-Recipie-App */,
+				D7B586272BAAF1D6002DED77 /* Food-Recipie-AppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -400,6 +453,13 @@
 				D7B585FF2BA85D15002DED77 /* RateCollectionViewCell.xib in Resources */,
 				D764F78F2B99D6B2009CA39C /* Main.storyboard in Resources */,
 				D7B586112BA8D477002DED77 /* NotificationCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7B586262BAAF1D6002DED77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +564,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7B586242BAAF1D6002DED77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7B5862B2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7B5862D2BAAF1D7002DED77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D764F7832B99D6B2009CA39C /* Food-Recipie-App */;
+			targetProxy = D7B5862C2BAAF1D7002DED77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D764F78D2B99D6B2009CA39C /* Main.storyboard */ = {
@@ -698,6 +774,40 @@
 			};
 			name = Release;
 		};
+		D7B5862E2BAAF1D7002DED77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Food-Recipie-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Food-Recipie-App.app/Food-Recipie-App";
+			};
+			name = Debug;
+		};
+		D7B5862F2BAAF1D7002DED77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Food-Recipie-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Food-Recipie-App.app/Food-Recipie-App";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -715,6 +825,15 @@
 			buildConfigurations = (
 				D764F7992B99D6B4009CA39C /* Debug */,
 				D764F79A2B99D6B4009CA39C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7B586302BAAF1D7002DED77 /* Build configuration list for PBXNativeTarget "Food-Recipie-AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7B5862E2BAAF1D7002DED77 /* Debug */,
+				D7B5862F2BAAF1D7002DED77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
