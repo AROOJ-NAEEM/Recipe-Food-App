@@ -10,8 +10,10 @@ import SDWebImage
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var recipeCollectionView: UICollectionView!
     @IBOutlet weak var newRecipeCollectionView: UICollectionView!
+    @IBOutlet weak var nameActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -20,11 +22,15 @@ class HomeViewController: UIViewController {
     var origin = ["All", "Indian", "Italian", "Asian" ,"Chinese"]
     var recipesLoaded = false
     var filteredRecipes: [Recipe] = []
+    @IBOutlet weak var newRecipeNewActivity: UIActivityIndicatorView!
     var originFilteredRecipes: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        activityIndicator.startAnimating()
+        newRecipeNewActivity.startAnimating()
+        nameActivityIndicator.startAnimating()
         searchBar.delegate = self
         filterViewController.filterDelegate?.filterButtonPressed()
         //data sources
@@ -44,6 +50,8 @@ class HomeViewController: UIViewController {
             if let userName = userName {
                 DispatchQueue.main.async {
                     self?.userName.text = "Hello, \(userName)"
+                    self?.nameActivityIndicator.stopAnimating()
+                    self?.nameActivityIndicator.isHidden = true
                 }
             } else {
                 print("user is not signed in or data not found")
@@ -69,6 +77,10 @@ class HomeViewController: UIViewController {
                     self.recipeCollectionView.reloadData()
                     self.newRecipeCollectionView.reloadData()
                     self.categoryCollectionView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.newRecipeNewActivity.stopAnimating()
+                    self.newRecipeNewActivity.isHidden = true
                 }
             }
         }

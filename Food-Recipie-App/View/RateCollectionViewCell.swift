@@ -29,6 +29,7 @@ class RateCollectionViewCell: UICollectionViewCell {
     private func toggleBackgroundColor() {
         if isSelected {
             self.backgroundColor = UIColor(named: "buttonColor")
+            rateLabel.textColor = .white
         }else {
             self.backgroundColor = .white
         }

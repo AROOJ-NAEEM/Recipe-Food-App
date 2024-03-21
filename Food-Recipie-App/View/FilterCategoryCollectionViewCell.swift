@@ -30,6 +30,7 @@ class FilterCategoryCollectionViewCell: UICollectionViewCell {
     private func toggleBackgroundColor() {
         if isSelected {
             self.backgroundColor = UIColor(named: "buttonColor")
+            categoryLabel.textColor = .white
         }else {
             self.backgroundColor = .white
         }

@@ -39,6 +39,7 @@ class TimeCollectionViewCell: UICollectionViewCell {
     private func toggleBackgroundColor() {
         if isSelected {
             self.backgroundColor = UIColor(named: "buttonColor")
+            timeLabel.textColor = .white
         }else {
             self.backgroundColor = .white
         }

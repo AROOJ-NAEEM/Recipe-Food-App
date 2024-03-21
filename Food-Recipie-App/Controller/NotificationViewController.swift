@@ -12,11 +12,15 @@ class NotificationViewController: UIViewController {
     private let databaseManager = DatabaseManager.shared
     var viewModel: NotificationViewModel!
     
+    @IBOutlet weak var todayActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var yesterdayActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var todayCollectionView: UICollectionView!
     @IBOutlet weak var yesterdayCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        todayActivityIndicator.startAnimating()
+        yesterdayActivityIndicator.startAnimating()
         // Do any additional setup after loading the view.
         yesterdayCollectionView.dataSource = self
         yesterdayCollectionView.register(UINib(nibName: "YesterdayCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
@@ -30,6 +34,10 @@ class NotificationViewController: UIViewController {
     private func fetchNotifications() {
         viewModel.fetchNotifications { [weak self] in
             self?.updateCollectionView()
+            self?.yesterdayActivityIndicator.stopAnimating()
+            self?.yesterdayActivityIndicator.isHidden = true
+            self?.todayActivityIndicator.stopAnimating()
+            self?.todayActivityIndicator.isHidden = true
         }
     }
     

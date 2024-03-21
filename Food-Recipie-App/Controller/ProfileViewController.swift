@@ -10,14 +10,19 @@ import UIKit
 class ProfileViewController: UIViewController {
     let homeViewModel = HomeViewModel()
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        userName.text = ""
+        activityIndicator.startAnimating()
 
         // Do any additional setup after loading the view.
         homeViewModel.fetchName { [weak self] userName in
             if let userName = userName {
                 DispatchQueue.main.async {
                     self?.userName.text = userName
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.isHidden = true
                 }
             } else {
                 print("user is not signed in or data not found")
