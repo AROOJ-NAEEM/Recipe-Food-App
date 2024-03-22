@@ -9,11 +9,14 @@ import UIKit
 
 class FilterCategoryCollectionViewCell: UICollectionViewCell {
 
+    var viewModel = FilterCategoryCollectionViewModel()
     @IBOutlet weak var categoryLabel: UILabel!
     override var isSelected: Bool {
         didSet{
             toggleBackgroundColor()
-            FilterManager.shared.filter.category = self.categoryLabel.text ?? ""
+            if let category = self.categoryLabel.text {
+                viewModel.storeCategoryLabelVlaue(categoryLabel: category)
+            }
         }
     }
     override func awakeFromNib() {

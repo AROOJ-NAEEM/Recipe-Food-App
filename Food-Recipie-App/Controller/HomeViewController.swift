@@ -17,34 +17,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var newRecipeNewActivity: UIActivityIndicatorView!
+    
+    
     let homeViewModel = HomeViewModel()
     let filterViewController = FilterViewController()
-    var origin = ["All", "Indian", "Italian", "Asian" ,"Chinese"]
-    var recipesLoaded = false
-    var filteredRecipes: [Recipe] = []
-    @IBOutlet weak var newRecipeNewActivity: UIActivityIndicatorView!
-    var originFilteredRecipes: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        activityIndicator.startAnimating()
-        newRecipeNewActivity.startAnimating()
-        nameActivityIndicator.startAnimating()
-        searchBar.delegate = self
-        filterViewController.filterDelegate?.filterButtonPressed()
-        //data sources
-        recipeCollectionView.dataSource = self
-        recipeCollectionView.delegate = self
-        recipeCollectionView.register(UINib(nibName: "RecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
-        newRecipeCollectionView.dataSource = self
-        newRecipeCollectionView.delegate = self
-        newRecipeCollectionView.register(UINib(nibName: "NewRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
-        categoryCollectionView.dataSource = self
-        categoryCollectionView.delegate = self
-        categoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        setUpUI()
         //code to fetch username
         homeViewModel.fetchName { [weak self] userName in
             if let userName = userName {
@@ -69,10 +50,9 @@ class HomeViewController: UIViewController {
             
             if let recipes = recipes {
                 Recipe.all = recipes
-                self.originFilteredRecipes = recipes
-                //print("all recipes= \(Recipe.all)")
-                self.recipesLoaded = true
-                guard self.recipesLoaded else { return }
+                self.homeViewModel.originFilteredRecipes = recipes
+                self.homeViewModel.recipesLoaded = true
+                guard self.homeViewModel.recipesLoaded else { return }
                 DispatchQueue.main.async {
                     self.recipeCollectionView.reloadData()
                     self.newRecipeCollectionView.reloadData()
@@ -92,10 +72,33 @@ class HomeViewController: UIViewController {
         
     }
     @IBAction func filterBtnPressed(_ sender: UIButton) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
-        newViewController.filterDelegate = self
-        present(newViewController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
+            newViewController.filterDelegate = self
+            self.present(newViewController, animated: true, completion: nil)
+        }
+    }
+    func setUpUI() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            self.newRecipeNewActivity.startAnimating()
+            self.nameActivityIndicator.startAnimating()
+            self.searchBar.delegate = self
+            self.filterViewController.filterDelegate?.filterButtonPressed()
+            //data sources
+            self.recipeCollectionView.dataSource = self
+            self.recipeCollectionView.delegate = self
+            self.recipeCollectionView.register(UINib(nibName: "RecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+            
+            self.newRecipeCollectionView.dataSource = self
+            self.newRecipeCollectionView.delegate = self
+            self.newRecipeCollectionView.register(UINib(nibName: "NewRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+            
+            self.categoryCollectionView.dataSource = self
+            self.categoryCollectionView.delegate = self
+            self.categoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        }
     }
 
     

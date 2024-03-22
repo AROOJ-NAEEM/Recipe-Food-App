@@ -11,6 +11,22 @@ import FirebaseAuth
 class HomeViewModel {
     static let shared = HomeViewModel()
     private let dbManager = DatabaseManager.shared
+    var origin = ["All", "Indian", "Italian", "Asian" ,"Chinese"]
+    var recipesLoaded = false
+    var filteredRecipes: [Recipe] = []
+    var originFilteredRecipes: [Recipe] = []
+    var filter: FilterModel?
+    var timeFilter: String?
+    var rateFilter: String?
+    var categoryFilter: String?
+
+    init() {
+        self.filter = FilterManager.shared.filter
+        self.timeFilter = filter?.time
+        self.rateFilter = filter?.rate
+        self.categoryFilter = filter?.category
+    }
+    
     func fetchName(completion: @escaping (String?) -> Void) {
         dbManager.fetchName { name in
             completion(name)
@@ -24,32 +40,75 @@ class HomeViewModel {
 
     }
     
-    func navigateToInitialScreen() -> UIViewController {
-        if Auth.auth().currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
-            guard let homeViewController = homeViewController as? UITabBarController else {
-                fatalError("Main view controller is not of type UITabBarController")
+    func filterNewRecipes() -> [Recipe] {
+            let currentDate = Date()
+            let twoMonthsAgo = Calendar.current.date(byAdding: .month, value: -2, to: currentDate)!
+            filteredRecipes = Recipe.all.filter { recipe in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                guard let publishedDate = dateFormatter.date(from: recipe.publishedDate) else {
+                    return false
+                }
+                return publishedDate >= twoMonthsAgo
             }
-            return homeViewController
+            return filteredRecipes
+        }
+    
+    func filterRecipesWithOrigin(withOrigin origin: String) {
+        if origin == "All" {
+            originFilteredRecipes = Recipe.all
         } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            guard let loginViewController = loginViewController as? LoginViewController else {
-                fatalError("Login view controller is not of type LoginViewController")
-            }
-            return loginViewController
+            originFilteredRecipes = Recipe.all.filter { $0.origin == origin }
         }
     }
     
-    func signOut(completion: @escaping () -> Void) {
-       do {
-           try Auth.auth().signOut()
-           completion()
-       } catch let signOutError as NSError {
-           print("Error signing out: %@", signOutError)
-       }
-   }
+    func categoryFilterRecipes() {
+        if categoryFilter == "All" {
+            originFilteredRecipes = Recipe.all
+        } else {
+            originFilteredRecipes = Recipe.all.filter { $0.category == categoryFilter }
+        }
+    }
+    
+    func timeFilterRecipes() {
+        if timeFilter == "Newest" {
+            let currentDate = Date()
+            let twoMonthsAgo = Calendar.current.date(byAdding: .month, value: -2, to: currentDate)!
+            originFilteredRecipes = originFilteredRecipes.filter { recipe in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                guard let publishedDate = dateFormatter.date(from: recipe.publishedDate) else {
+                    return false
+                }
+                return publishedDate >= twoMonthsAgo
+            }
+        } else if timeFilter == "Oldest" {
+            let currentDate = Date()
+            let twoMonthsAgo = Calendar.current.date(byAdding: .month, value: -2, to: currentDate)!
+            originFilteredRecipes = originFilteredRecipes.filter { recipe in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                guard let publishedDate = dateFormatter.date(from: recipe.publishedDate) else {
+                    return false
+                }
+                return publishedDate < twoMonthsAgo
+            }
+        } else if timeFilter == "All" {
+            originFilteredRecipes = Recipe.all
+        }
+    }
+    
+    func rateFilterRecipe() {
+        if let firstDigit = rateFilter?.first, let rateInt = Int(String(firstDigit)) {
+            originFilteredRecipes = originFilteredRecipes.filter { $0.rating == rateInt }
+        }
+    }
+    
+    func updatefilterManager() {
+        FilterManager.shared.filter.time = ""
+        FilterManager.shared.filter.rate = ""
+        FilterManager.shared.filter.category = ""
+    }
     
     
 }

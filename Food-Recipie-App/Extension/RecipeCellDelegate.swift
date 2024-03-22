@@ -22,3 +22,6 @@ protocol FilterButtonDelegate: AnyObject {
 protocol SavedRecipeDelegate: AnyObject {
     func recipesDidChange()
 }
+protocol RecipeSaveButtonDelegate: AnyObject {
+    func didPressSaveButton()
+}

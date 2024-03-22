@@ -20,7 +20,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         guard let origin = sender.currentTitle else {
            return
        }
-        print("origin: \(origin)")
         delegate?.categoryButtonPressed(withOrigin: origin)
+    }
+    
+    func configure(with origin: String) {
+        categoryButton.setTitle(origin, for: .normal)
     }
 }

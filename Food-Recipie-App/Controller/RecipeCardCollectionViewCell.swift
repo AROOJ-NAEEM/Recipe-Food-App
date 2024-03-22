@@ -17,7 +17,6 @@ class RecipeCardCollectionViewCell: UICollectionViewCell {
         timeRequiredToCook.text = "Time: \(recipe.requiredTime)"
          if let imageUrl = URL(string: recipe.image) {
              print("Loading image from \(imageUrl)")
-            //recipeImage.load(url: imageUrl)
              recipeImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "Recipe's Image"))
          
          } else {

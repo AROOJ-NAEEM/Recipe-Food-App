@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import FirebaseFirestore
-import FirebaseAuth
 
 class ForgetPasswordViewController: UIViewController {
 
+    var viewModel = ForgetPasswordViewModel()
     @IBOutlet weak var emailTextfield: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +19,12 @@ class ForgetPasswordViewController: UIViewController {
 
     @IBAction func sendEmailBtnPressed(_ sender: UIButton) {
         if let email = emailTextfield.text {
-            Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
-                if (error != nil) {
-                    print(error?.localizedDescription ?? "Error sending email.")
-                } else {
-                    print("sent!")
-                    
-                    DispatchQueue.main.async {
-                        self?.displaySuccess("Email sent!")
-                    }
+            viewModel.sendEmail(email: email) { success, error in
+                DispatchQueue.main.async {
+                    self.displaySuccess(success)   
                 }
             }
+            
         }
     }
     func displaySuccess(_ errorMessage: String?) {

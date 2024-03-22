@@ -9,13 +9,11 @@ import UIKit
 
 class SplashViewController: UIViewController {
 
-    
     @IBOutlet weak var gradient: UIView!
     @IBOutlet weak var background: UIImageView!
     var gradientLayer: CAGradientLayer!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Loop through your Recipe.all array and store each recipe in Firestore
         // Do any additional setup after loading the view.
         gradientLayer = CAGradientLayer()
         if let gradientConfigurationBounds = gradient?.bounds {
@@ -38,13 +36,25 @@ class SplashViewController: UIViewController {
     }
     
     @IBAction func startBtnPress(_ sender: UIButton) {
-        let initialViewController = HomeViewModel.shared.navigateToInitialScreen()
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("AppDelegate not found")
-        }
-        appDelegate.window?.rootViewController = initialViewController
-        appDelegate.window?.makeKeyAndVisible()
+        let isAuthenticated = SplashViewModel.shared.isUserAuthenticated()
+        navigateToInitialScreen(isAuthenticated: isAuthenticated)
     }
 
+    func navigateToInitialScreen(isAuthenticated: Bool) {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController: UIViewController
+            if isAuthenticated {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+            } else {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                fatalError("appdelegate nil")
+            }
+            appDelegate.window?.rootViewController = initialViewController
+            appDelegate.window?.makeKeyAndVisible()
+        }
+    }
     
 }

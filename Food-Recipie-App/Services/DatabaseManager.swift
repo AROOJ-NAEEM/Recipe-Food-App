@@ -84,4 +84,32 @@ class DatabaseManager {
                 completion(notifications)
             }
         }
+    
+    func updateRecipeStatus(withName name: String) {
+            db.collection("recipes")
+                .whereField("name", isEqualTo: name)
+                .getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        guard let documents = querySnapshot?.documents else {
+                            print("No documents found")
+                            return
+                        }
+                        if let document = documents.first {
+                            let recipeID = document.documentID
+                            let recipeRef = self.db.collection("recipes").document(recipeID)
+                            recipeRef.updateData(["status": true]) { error in
+                                if let error = error {
+                                    print("Error updating document: \(error)")
+                                } else {
+                                    print("Document successfully updated")
+                                }
+                            }
+                        } else {
+                            print("Recipe with name '\(name)' not found")
+                        }
+                    }
+                }
+        }
 }

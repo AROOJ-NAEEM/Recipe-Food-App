@@ -8,11 +8,15 @@
 import UIKit
 
 class RateCollectionViewCell: UICollectionViewCell {
+    
+    var viewModel = RateCollectionViewModel()
     @IBOutlet private weak var rateLabel: UILabel!
     override var isSelected: Bool {
         didSet{
             toggleBackgroundColor()
-            FilterManager.shared.filter.rate = self.rateLabel.text ?? ""
+            if let rateLabel = self.rateLabel.text {
+                viewModel.setCategoryLabelValue(category: rateLabel)
+            }
         }
     }
     override func awakeFromNib() {

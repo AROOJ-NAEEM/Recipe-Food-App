@@ -9,7 +9,6 @@ import UIKit
 
 class NewRecipeCollectionViewCell: UICollectionViewCell {
 
-    //var noOfstar: Int = 0
     @IBOutlet weak var recipeRating: UILabel!
     @IBOutlet weak var newRecipeCard: UIView!
     @IBOutlet weak var timeToCook: UILabel!
@@ -27,9 +26,14 @@ class NewRecipeCollectionViewCell: UICollectionViewCell {
         creatorImage.layer.cornerRadius = creatorImage.frame.size.width / 2
 
     }
-    func cofigureRating(noOfStar: Int) {
-        let stars = String(repeating: "⭐️", count: noOfStar)
+    func cofigure(with recipe: Recipe) {
+        let stars = String(repeating: "⭐️", count: recipe.rating)
         recipeRating.text = stars
+        recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(named: "Recipe's Image"))
+        creatorImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(named: "Creator's Image"))
+        recipeName.text = recipe.name
+        timeToCook.text = "⏱ \(recipe.requiredTime)"
+        creatorName.text = "By \(recipe.creator)"
     }
 
 }

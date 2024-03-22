@@ -11,7 +11,7 @@ import RealmSwift
 class SavedRecipeViewController: UIViewController {
 
     let realm = try! Realm()
-    let homeViewModel = HomeViewModel()
+    let viewModel = SavedRecipeViewModel()
     let recipeManager = RecipeCollectionViewCell()
     var recipes: Results<Recipes>?
     
@@ -26,16 +26,17 @@ class SavedRecipeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        fetchRecipes()
+        viewModel.fetchRecipes { recipe, error in
+            self.recipes = recipe
+        }
+        savedRecipeCollectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchRecipes()
-    }
-    
-    func fetchRecipes() {
-        recipes = realm.objects(Recipes.self)
+        viewModel.fetchRecipes { recipe, error in
+            self.recipes = recipe
+        }
         savedRecipeCollectionView.reloadData()
     }
 
