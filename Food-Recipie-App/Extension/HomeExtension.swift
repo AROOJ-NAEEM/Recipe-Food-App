@@ -13,8 +13,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case recipeCollectionView:
             return homeViewModel.originFilteredRecipes.count
         case newRecipeCollectionView:
-            let newRecipes = homeViewModel.filterNewRecipes()
-            return newRecipes.count
+            return homeViewModel.filterNewRecipes().count
         case categoryCollectionView:
             return homeViewModel.origin.count
         default:
@@ -22,31 +21,33 @@ extension HomeViewController: UICollectionViewDataSource {
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if (collectionView == self.recipeCollectionView) {
+        switch collectionView {
+        case recipeCollectionView:
             let cell = recipeCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! RecipeCollectionViewCell
             let recipe = homeViewModel.originFilteredRecipes[indexPath.row]
-            cell.delegate = self
-            //cell.saveButtonDelegate = self 
+            //cell.delegate = self
             cell.configure(with: recipe)
             return cell
-        }
 
-        else if (collectionView == self.newRecipeCollectionView) {
-            let cell2 = newRecipeCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NewRecipeCollectionViewCell
-            let recipe = homeViewModel.filteredRecipes[indexPath.row]
-            cell2.cofigure(with: recipe)
+        case newRecipeCollectionView:
+            let cell2 = newRecipeCollectionView.dequeueReusableCell(withReuseIdentifier: "NewCell", for: indexPath) as! NewRecipeCollectionViewCell
+            let recipe = homeViewModel.filterNewRecipes()[indexPath.row]
+            print("new recipe \(recipe)")
+            cell2.configure(with: recipe)
             return cell2
-        }
-        
-        else {
+
+        case categoryCollectionView:
             let cell3 = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionViewCell
             print("IndexPath: \(indexPath), Origin Count: \(homeViewModel.origin.count)")
             let origin = homeViewModel.origin[indexPath.row]
             cell3.configure(with: origin)
-            cell3.delegate = self
+            //cell3.delegate = self
             return cell3
+
+        default:
+            fatalError("Collection view is  nil")
         }
+
         
     }
 
@@ -119,26 +120,26 @@ extension HomeViewController: FilterButtonDelegate {
     }
 }
 
-extension HomeViewController: RecipeCellDelegate {
-    func didPressSaveButton(in cell: RecipeCollectionViewCell) {
-        //guard let parentCell = cell.superview?.superview as? RecipeCollectionViewCell else {
-//                return
-//            }
- //   let allRecipes = homeViewModel.originFilteredRecipes
-//        print(" Value  == \(allRecipes.contains(where: { $0.status }))")
-//        if allRecipes.contains(where: { $0.status }) {
-//            cell.saveBtn.isEnabled = false
-//        } else {
-//            cell.saveBtn.isEnabled = true
+//extension HomeViewController: RecipeCellDelegate {
+//    func didPressSaveButton(in cell: RecipeCollectionViewCell) {
+//        //guard let parentCell = cell.superview?.superview as? RecipeCollectionViewCell else {
+////                return
+////            }
+// //   let allRecipes = homeViewModel.originFilteredRecipes
+////        print(" Value  == \(allRecipes.contains(where: { $0.status }))")
+////        if allRecipes.contains(where: { $0.status }) {
+////            cell.saveBtn.isEnabled = false
+////        } else {
+////            cell.saveBtn.isEnabled = true
+////        }
+//        DispatchQueue.main.async {
+//           // self.recipeCollectionView.reloadData()
 //        }
-        DispatchQueue.main.async {
-            self.recipeCollectionView.reloadData()
-        }
-   }
-}
-extension HomeViewController: RecipeSaveButtonDelegate {
-    func didPressSaveButton() {
-        recipeCollectionView.reloadData()
-    }
-}
+//   }
+//}
+//extension HomeViewController: RecipeSaveButtonDelegate {
+//    func didPressSaveButton() {
+//        recipeCollectionView.reloadData()
+//    }
+//}
 

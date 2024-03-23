@@ -8,9 +8,9 @@
 import UIKit
 
 class RecipeCollectionViewCell: UICollectionViewCell {
-    weak var delegate: RecipeCellDelegate?
-    weak var saveButtonDelegate: RecipeSaveButtonDelegate?
-    weak var reloadDelegate: SavedRecipeDelegate?
+    //weak var delegate: RecipeCellDelegate?
+    //weak var saveButtonDelegate: RecipeSaveButtonDelegate?
+   // weak var reloadDelegate: SavedRecipeDelegate?
     private var viewModel: RecipeCollectionViewCellViewModel?
     
     @IBOutlet private weak var rateView: UIView!
@@ -86,15 +86,17 @@ class RecipeCollectionViewCell: UICollectionViewCell {
             
             
             viewModel.saveRecipes(recipe: newRecipe)
-            reloadDelegate?.recipesDidChange()
+            //reloadDelegate?.recipesDidChange()
             
             let recipeName = recipeName.text ?? ""
             viewModel.updateRecipeStatus(withName: recipeName)
         }
-        updateStatus(viewModel?.status ?? false)
-        delegate?.didPressSaveButton(in: self)
-        //saveButtonDelegate?.didPressSaveButton()
-            
+        
+        
+        updateStatus(true)
+        
+        //delegate?.didPressSaveButton(in: self)
+        //reloadDelegate?.recipesDidChange()
     }
     
     func configure(with recipe: Recipe) {

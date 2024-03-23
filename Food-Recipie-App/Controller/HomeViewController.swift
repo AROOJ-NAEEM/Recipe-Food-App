@@ -25,6 +25,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         setUpUI()
         //code to fetch username
         homeViewModel.fetchName { [weak self] userName in
@@ -51,12 +53,15 @@ class HomeViewController: UIViewController {
             if let recipes = recipes {
                 Recipe.all = recipes
                 self.homeViewModel.originFilteredRecipes = recipes
+                self.homeViewModel.filteredRecipes = recipes
                 self.homeViewModel.recipesLoaded = true
                 guard self.homeViewModel.recipesLoaded else { return }
                 DispatchQueue.main.async {
+                    
                     self.recipeCollectionView.reloadData()
                     self.newRecipeCollectionView.reloadData()
                     self.categoryCollectionView.reloadData()
+                    
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     self.newRecipeNewActivity.stopAnimating()
@@ -93,7 +98,7 @@ class HomeViewController: UIViewController {
             
             self.newRecipeCollectionView.dataSource = self
             self.newRecipeCollectionView.delegate = self
-            self.newRecipeCollectionView.register(UINib(nibName: "NewRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+            self.newRecipeCollectionView.register(UINib(nibName: "NewRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewCell")
             
             self.categoryCollectionView.dataSource = self
             self.categoryCollectionView.delegate = self

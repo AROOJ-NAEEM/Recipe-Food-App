@@ -41,19 +41,20 @@ class HomeViewModel {
     }
     
     func filterNewRecipes() -> [Recipe] {
-            let currentDate = Date()
-            let twoMonthsAgo = Calendar.current.date(byAdding: .month, value: -2, to: currentDate)!
-            filteredRecipes = Recipe.all.filter { recipe in
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                guard let publishedDate = dateFormatter.date(from: recipe.publishedDate) else {
-                    return false
-                }
-                return publishedDate >= twoMonthsAgo
+        let currentDate = Date()
+        let twoMonthsAgo = Calendar.current.date(byAdding: .month, value: -2, to: currentDate)!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        filteredRecipes = Recipe.all.filter { recipe in
+            guard let publishedDate = dateFormatter.date(from: recipe.publishedDate) else {
+                return false
             }
-            return filteredRecipes
+            return publishedDate >= twoMonthsAgo
         }
-    
+        print(filteredRecipes)
+        return filteredRecipes
+    }
+
     func filterRecipesWithOrigin(withOrigin origin: String) {
         if origin == "All" {
             originFilteredRecipes = Recipe.all

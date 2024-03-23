@@ -26,7 +26,7 @@ class NewRecipeCollectionViewCell: UICollectionViewCell {
         creatorImage.layer.cornerRadius = creatorImage.frame.size.width / 2
 
     }
-    func cofigure(with recipe: Recipe) {
+    func configure(with recipe: Recipe) {
         let stars = String(repeating: "⭐️", count: recipe.rating)
         recipeRating.text = stars
         recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(named: "Recipe's Image"))
