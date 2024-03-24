@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
             self.activityIndicator.isHidden = true
             self.googleActivityIndicator.isHidden = true
         }
+        viewModel.delegate = self
     }
     
     @IBAction func signInPressed(_ sender: UIButton) {
@@ -68,14 +69,7 @@ class LoginViewController: UIViewController {
                 // Navigate to home view controller
                 DispatchQueue.main.async {
                     self.googleActivityIndicator.stopAnimating()
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as? UITabBarController else { return }
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                           return
-                       }
-                    appDelegate.window?.rootViewController = loginViewController
-                    appDelegate.window?.makeKeyAndVisible()
-                }
+                    self.navigateToHomeScreen()                }
             } else {
                 DispatchQueue.main.async {
                     self.googleActivityIndicator.stopAnimating()
@@ -84,6 +78,16 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func navigateToHomeScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as? UITabBarController else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+        appDelegate.window?.rootViewController = loginViewController
+        appDelegate.window?.makeKeyAndVisible()
     }
         
     @IBAction func signUpPressed(_ sender: UIButton) {
@@ -110,4 +114,6 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
 }
+

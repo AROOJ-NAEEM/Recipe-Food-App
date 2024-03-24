@@ -1,11 +1,27 @@
 //
-//  RecipeCellDelegate.swift
+//  ViewModelProtocol.swift
 //  Food-Recipie-App
 //
-//  Created by Dev on 3/17/24.
+//  Created by Dev on 3/24/24.
 //
 
 import Foundation
+
+protocol SplashViewModelProtocol {
+    func isUserAuthenticated() -> Bool
+}
+
+protocol LoginViewModelDelegate: AnyObject {
+    func loginDidSucceed()
+    func loginDidFail(withError error: Error)
+}
+
+protocol AuthenticationDelegate: AnyObject {
+    func signUpDidSucceed(user: User)
+    func signInDidSucceed(user: User)
+    func authenticationDidFail(withError error: Error)
+    func navigateToHomeScreen()
+}
 
 protocol RecipeCellDelegate: AnyObject {
     func didPressSaveButton(in cell: RecipeCollectionViewCell)
@@ -25,3 +41,4 @@ protocol SavedRecipeDelegate: AnyObject {
 protocol RecipeSaveButtonDelegate: AnyObject {
     func didPressSaveButton()
 }
+

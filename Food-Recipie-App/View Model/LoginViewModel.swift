@@ -11,12 +11,18 @@ import FirebaseFirestore
 import FirebaseAuth
 import GoogleSignIn
 
+
 class LoginViewModel {
+    private let databaseManager = DatabaseManager.shared
+    weak var delegate: LoginViewModelDelegate?
+    
     func LogIn(email: String, password: String, completion: @escaping(Bool, String?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let e = error {
+                self.delegate?.loginDidFail(withError: e)
                 completion(false, e.localizedDescription)
             } else {
+                self.delegate?.loginDidSucceed()
                 completion(true, nil)
             }
             
@@ -34,6 +40,7 @@ class LoginViewModel {
             GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { result, error in
                 guard error == nil else {
                     // Handle Google Sign-In error
+                    self.delegate?.loginDidFail(withError: error!)
                     print("Google Sign-In Error: \(error!.localizedDescription)")
                     return
                 }
@@ -51,10 +58,24 @@ class LoginViewModel {
                 // Sign in with Firebase using the Google credential
                 Auth.auth().signIn(with: credential) { authResult, error in
                     if let error = error {
-                        // Handle Firebase Sign-In error
+                        self.delegate?.loginDidFail(withError: error)
                         completion(false, "Firebase Sign-In Error: \(error.localizedDescription)")
                     } else {
-                        completion(true, nil)
+                        //completion(true, nil)
+                        let userName = user.profile?.name ?? "Google User"
+                        guard let userUID = authResult?.user.uid else {
+                            completion(false, "Failed to get user UID.")
+                            return
+                        }
+                        self.databaseManager.createUser(withUID: userUID, userName: userName) { error in
+                            if let error = error {
+                                completion(false, "Error creating user document: \(error.localizedDescription)")
+                                self.delegate?.loginDidFail(withError: error)
+                            } else {
+                                self.delegate?.loginDidSucceed()
+                                completion(true, nil)
+                            }
+                        }
                     }
                 }
             }

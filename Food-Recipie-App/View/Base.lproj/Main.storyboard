@@ -1006,7 +1006,7 @@
                                 </constraints>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Te-Ov-dQv">
-                                <rect key="frame" x="10" y="733" width="408" height="31"/>
+                                <rect key="frame" x="119" y="728" width="190" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="person.crop.circle" catalog="system" title="Logout">
                                     <color key="baseForegroundColor" name="buttonColor"/>
@@ -1020,24 +1020,25 @@
                         <viewLayoutGuide key="safeArea" id="sZs-qb-DKy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="sZs-qb-DKy" firstAttribute="trailing" secondItem="4Te-Ov-dQv" secondAttribute="trailing" constant="10" id="1nO-Xx-LIg"/>
                             <constraint firstItem="Bt4-zl-nQ4" firstAttribute="leading" secondItem="sZs-qb-DKy" secondAttribute="leading" id="5sd-hc-ZXM"/>
                             <constraint firstAttribute="trailing" secondItem="hVp-DN-TTb" secondAttribute="trailing" constant="10" id="7iA-9I-aIH"/>
-                            <constraint firstAttribute="bottom" secondItem="4Te-Ov-dQv" secondAttribute="bottom" constant="162" id="QAA-LQ-hm9"/>
+                            <constraint firstItem="4Te-Ov-dQv" firstAttribute="leading" secondItem="sZs-qb-DKy" secondAttribute="leading" constant="119" id="GUe-yK-NS3"/>
+                            <constraint firstAttribute="bottom" secondItem="4Te-Ov-dQv" secondAttribute="bottom" constant="167" id="QAA-LQ-hm9"/>
                             <constraint firstAttribute="bottom" secondItem="P9D-K9-Xv4" secondAttribute="bottom" constant="649" id="TJ0-pe-TIw"/>
                             <constraint firstAttribute="centerX" secondItem="P9D-K9-Xv4" secondAttribute="centerX" constant="155.5" id="TnR-ZT-TAh"/>
                             <constraint firstAttribute="bottom" secondItem="hVp-DN-TTb" secondAttribute="bottom" constant="651" id="aMD-nS-NcY"/>
                             <constraint firstItem="hVp-DN-TTb" firstAttribute="leading" secondItem="45P-oq-yYd" secondAttribute="leading" constant="10" id="byA-Zf-viw"/>
                             <constraint firstItem="Bt4-zl-nQ4" firstAttribute="top" secondItem="45P-oq-yYd" secondAttribute="top" id="kcC-s5-QaZ"/>
-                            <constraint firstItem="4Te-Ov-dQv" firstAttribute="leading" secondItem="sZs-qb-DKy" secondAttribute="leading" constant="10" id="lCd-vp-joj"/>
                             <constraint firstItem="P9D-K9-Xv4" firstAttribute="leading" secondItem="45P-oq-yYd" secondAttribute="leading" constant="17" id="lGJ-av-mdO"/>
                             <constraint firstAttribute="bottom" secondItem="Bt4-zl-nQ4" secondAttribute="bottom" constant="720" id="lbO-78-2Ai"/>
+                            <constraint firstItem="sZs-qb-DKy" firstAttribute="trailing" secondItem="4Te-Ov-dQv" secondAttribute="trailing" constant="119" id="w8k-On-iPr"/>
                             <constraint firstItem="sZs-qb-DKy" firstAttribute="trailing" secondItem="Bt4-zl-nQ4" secondAttribute="trailing" id="yX2-Mg-6Pr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sYi-Sk-VH4"/>
                     <connections>
                         <outlet property="activityIndicator" destination="P9D-K9-Xv4" id="Fkp-4F-SST"/>
+                        <outlet property="logoutBtn" destination="4Te-Ov-dQv" id="zVS-Up-Q0M"/>
                         <outlet property="userName" destination="hVp-DN-TTb" id="8VG-pm-qXJ"/>
                     </connections>
                 </viewController>

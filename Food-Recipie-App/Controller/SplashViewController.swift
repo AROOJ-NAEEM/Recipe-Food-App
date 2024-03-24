@@ -15,6 +15,10 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        addGradient()
+    }
+    
+    func addGradient() {
         gradientLayer = CAGradientLayer()
         if let gradientConfigurationBounds = gradient?.bounds {
             gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]

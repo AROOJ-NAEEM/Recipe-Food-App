@@ -10,20 +10,36 @@ import UIKit
 class ProfileViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var logoutBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        addShadowToButton()
+        setupUI()
+        fetchUsername()
+    }
+    
+    func setupUI() {
         if let userNameLabel = userName {
             userNameLabel.text = ""
         } else {
-            print("userName outlet is nil")
+            print("userName is nil")
         }
         if let indicator = activityIndicator {
             indicator.startAnimating()
         } else {
-            print("activityIndicator outlet is nil")
+            print("activityIndicator is nil")
         }
-
-        // Do any additional setup after loading the view.
+    }
+    
+    func addShadowToButton() {
+        logoutBtn.layer.shadowColor = UIColor.black.cgColor
+        logoutBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
+        logoutBtn.layer.shadowOpacity = 0.5
+        logoutBtn.layer.shadowRadius = 4
+        logoutBtn.layer.masksToBounds = false
+    }
+    
+    func fetchUsername() {
         ProfileViewModel.shared.fetchName { [weak self] userName in
             if let userName = userName {
                 DispatchQueue.main.async {
@@ -36,7 +52,15 @@ class ProfileViewController: UIViewController {
                     }
                 }
             } else {
-                print("Error getting username")
+                DispatchQueue.main.async {
+                    if let userNameLabel = self?.userName {
+                        userNameLabel.text = "User Name"
+                    }
+                    if let activityIndicator = self?.activityIndicator {
+                        activityIndicator.stopAnimating()
+                        activityIndicator.isHidden = true
+                    }
+                }
             }
         }
     }

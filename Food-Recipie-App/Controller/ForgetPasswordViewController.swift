@@ -13,8 +13,6 @@ class ForgetPasswordViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func sendEmailBtnPressed(_ sender: UIButton) {

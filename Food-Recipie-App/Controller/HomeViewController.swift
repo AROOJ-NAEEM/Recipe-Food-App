@@ -28,48 +28,8 @@ class HomeViewController: UIViewController {
         
         
         setUpUI()
-        //code to fetch username
-        homeViewModel.fetchName { [weak self] userName in
-            if let userName = userName {
-                DispatchQueue.main.async {
-                    self?.userName.text = "Hello, \(userName)"
-                    self?.nameActivityIndicator.stopAnimating()
-                    self?.nameActivityIndicator.isHidden = true
-                }
-            } else {
-                print("user is not signed in or data not found")
-            }
-        }
-        
-        //code to fetch recipes:
-        homeViewModel.loadRecipes { [weak self] recipes, error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error loading recipes: \(error)")
-                return
-            }
-            
-            if let recipes = recipes {
-                Recipe.all = recipes
-                self.homeViewModel.originFilteredRecipes = recipes
-                self.homeViewModel.filteredRecipes = recipes
-                self.homeViewModel.recipesLoaded = true
-                guard self.homeViewModel.recipesLoaded else { return }
-                DispatchQueue.main.async {
-                    
-                    self.recipeCollectionView.reloadData()
-                    self.newRecipeCollectionView.reloadData()
-                    self.categoryCollectionView.reloadData()
-                    
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
-                    self.newRecipeNewActivity.stopAnimating()
-                    self.newRecipeNewActivity.isHidden = true
-                }
-            }
-        }
-        
+        fetchUserName()
+        fetchRecipes()
         DispatchQueue.main.async {
             self.categoryCollectionView.reloadData()
         }
@@ -103,6 +63,56 @@ class HomeViewController: UIViewController {
             self.categoryCollectionView.dataSource = self
             self.categoryCollectionView.delegate = self
             self.categoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        }
+    }
+    
+    func fetchUserName() {
+        //code to fetch username
+        homeViewModel.fetchName { [weak self] userName in
+            if let userName = userName {
+                DispatchQueue.main.async {
+                    self?.userName.text = "Hello, \(userName)"
+                    self?.nameActivityIndicator.stopAnimating()
+                    self?.nameActivityIndicator.isHidden = true
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.userName.text = "Hello"
+                    self?.nameActivityIndicator.stopAnimating()
+                    self?.nameActivityIndicator.isHidden = true
+                }
+            }
+        }
+    }
+    
+    func fetchRecipes() {
+        //code to fetch recipes:
+        homeViewModel.loadRecipes { [weak self] recipes, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error loading recipes: \(error)")
+                return
+            }
+            
+            if let recipes = recipes {
+                Recipe.all = recipes
+                self.homeViewModel.originFilteredRecipes = recipes
+                self.homeViewModel.filteredRecipes = recipes
+                self.homeViewModel.recipesLoaded = true
+                guard self.homeViewModel.recipesLoaded else { return }
+                DispatchQueue.main.async {
+                    
+                    self.recipeCollectionView.reloadData()
+                    self.newRecipeCollectionView.reloadData()
+                    self.categoryCollectionView.reloadData()
+                    
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.newRecipeNewActivity.stopAnimating()
+                    self.newRecipeNewActivity.isHidden = true
+                }
+            }
         }
     }
 

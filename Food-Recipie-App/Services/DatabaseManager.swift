@@ -59,11 +59,11 @@ class DatabaseManager {
     }
     
     func createUser(withUID uid: String, userName: String, completion: @escaping (Error?) -> Void) {
-            let userData = ["name": userName]
-            db.collection("users").document(uid).setData(userData) { error in
-                completion(error)
-            }
+        let userData = ["name": userName]
+        db.collection("users").document(uid).setData(userData) { error in
+            completion(error)
         }
+    }
     func fetchNotifications(completion: @escaping ([Notification]) -> Void) {
             db.collection("notifications").getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
@@ -86,30 +86,41 @@ class DatabaseManager {
         }
     
     func updateRecipeStatus(withName name: String) {
-            db.collection("recipes")
-                .whereField("name", isEqualTo: name)
-                .getDocuments { (querySnapshot, error) in
-                    if let error = error {
-                        print("Error getting documents: \(error)")
-                    } else {
-                        guard let documents = querySnapshot?.documents else {
-                            print("No documents found")
-                            return
-                        }
-                        if let document = documents.first {
-                            let recipeID = document.documentID
-                            let recipeRef = self.db.collection("recipes").document(recipeID)
-                            recipeRef.updateData(["status": true]) { error in
-                                if let error = error {
-                                    print("Error updating document: \(error)")
-                                } else {
-                                    print("Document successfully updated")
-                                }
+        db.collection("recipes")
+            .whereField("name", isEqualTo: name)
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    guard let documents = querySnapshot?.documents else {
+                        print("No documents found")
+                        return
+                    }
+                    if let document = documents.first {
+                        let recipeID = document.documentID
+                        let recipeRef = self.db.collection("recipes").document(recipeID)
+                        recipeRef.updateData(["status": true]) { error in
+                            if let error = error {
+                                print("Error updating document: \(error)")
+                            } else {
+                                print("Document successfully updated")
                             }
-                        } else {
-                            print("Recipe with name '\(name)' not found")
                         }
+                    } else {
+                        print("Recipe with name '\(name)' not found")
                     }
                 }
+            }
+    }
+    
+    func sendPasswordResetEmail(to email: String, completion: @escaping (String?, Error?) -> Void) {
+        authManager.sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion("Password reset email sent successfully.", nil)
+            }
         }
+    }
+
 }

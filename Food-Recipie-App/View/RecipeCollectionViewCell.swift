@@ -8,9 +8,6 @@
 import UIKit
 
 class RecipeCollectionViewCell: UICollectionViewCell {
-    //weak var delegate: RecipeCellDelegate?
-    //weak var saveButtonDelegate: RecipeSaveButtonDelegate?
-   // weak var reloadDelegate: SavedRecipeDelegate?
     private var viewModel: RecipeCollectionViewCellViewModel?
     
     @IBOutlet private weak var rateView: UIView!
@@ -43,60 +40,26 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     @IBAction func saveRecipePressed(_ sender: UIButton) {
         
         if let viewModel = viewModel {
-            let newRecipe = Recipes()
-            let newIngredient = Ingredient()
-            let newProcedure = Procedure()
-            newRecipe.name = recipeName.text ?? ""
-            newRecipe.image = viewModel.recipeImage
-            newRecipe.requiredTime = timeToCook.text ?? ""
-            newRecipe.creator = viewModel.creator
-            newRecipe.publishedDate = viewModel.publishedDate
-            newRecipe.category = viewModel.category
-            newRecipe.rating = viewModel.rating
-            newRecipe.origin = viewModel.origin
-            newRecipe.creatorImage = viewModel.creatorImage
-            for (ingredientName, _) in viewModel.ingredients {
-                let newIngredient = Ingredient()
-                newIngredient.name = ingredientName
-
-                if let ingredientData = viewModel.ingredients[ingredientName] {
-                    for (ingredientImage, ingredientQuantity) in ingredientData {
-                        newIngredient.image = ingredientImage
-                        newIngredient.quantity = ingredientQuantity
-                    }
-                }
-                viewModel.ingredient.append(newIngredient)
-            }
-            newRecipe.ingredients.append(objectsIn: viewModel.ingredient)
-
-            for stepDict in viewModel.procedure {
-                let newProcedure = Procedure()
-                if let stepDetail = stepDict["stepDetail"] as? String,
-                   let stepNumber = stepDict["stepNumber"] as? Int {
-                    newProcedure.stepDetail = stepDetail
-                    newProcedure.stepNumber = stepNumber
-                    newRecipe.procedure.append(newProcedure)
-                }
-            }
-        
-
-            viewModel.recipe.append(newRecipe)
-            viewModel.ingredient.append(newIngredient)
-            viewModel.procedures.append(newProcedure)
             
-            
+            let newRecipe = viewModel.createNewRecipe(withName: recipeName.text ?? "",
+                                                      imageURL: viewModel.recipeImage,
+                                                      requiredTime: timeToCook.text ?? "",
+                                                      creator: viewModel.creator,
+                                                      publishedDate: viewModel.publishedDate,
+                                                      category: viewModel.category,
+                                                      rating: viewModel.rating,
+                                                      origin: viewModel.origin,
+                                                      creatorImage: viewModel.creatorImage,
+                                                      ingredients: viewModel.ingredients,
+                                                      procedures: viewModel.procedure)
             viewModel.saveRecipes(recipe: newRecipe)
-            //reloadDelegate?.recipesDidChange()
-            
+                
             let recipeName = recipeName.text ?? ""
             viewModel.updateRecipeStatus(withName: recipeName)
         }
         
         
         updateStatus(true)
-        
-        //delegate?.didPressSaveButton(in: self)
-        //reloadDelegate?.recipesDidChange()
     }
     
     func configure(with recipe: Recipe) {

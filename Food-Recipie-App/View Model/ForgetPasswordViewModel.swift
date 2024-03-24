@@ -10,11 +10,11 @@ import FirebaseAuth
 
 class ForgetPasswordViewModel {
     func sendEmail(email: String, completion: @escaping (String?, Error?) ->Void) {
-        Auth.auth().sendPasswordReset(withEmail: email) { error in
-            if (error != nil) {
+        DatabaseManager.shared.sendPasswordResetEmail(to: email) { result, error in
+            if let error = error {
                 completion(nil, error)
             } else {
-                completion("Email sent", nil)
+                completion(result, nil)
             }
         }
     }

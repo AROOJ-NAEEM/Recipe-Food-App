@@ -24,6 +24,7 @@ class SignupViewController: UIViewController {
             self.activityIndicator.isHidden = true
             self.googleActivityIndicator.isHidden = true
         }
+        self.viewModel.delegate = self
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
@@ -41,17 +42,7 @@ class SignupViewController: UIViewController {
         viewModel.signUp(email: email, password: password, confirmPassword: confirmPassword, userName: userName, btnImage: btnImage) { success, errorMessage in
             if success {
                 //Nagivate to home view controller
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as? UITabBarController else { return }
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                           return
-                       }
-                    appDelegate.window?.rootViewController = loginViewController
-                    appDelegate.window?.makeKeyAndVisible()
-
-                }
+                self.navigateToHomeScreen()
             } else {
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
@@ -62,7 +53,6 @@ class SignupViewController: UIViewController {
             }
         }
     }
-    
     
     @IBAction func googleSignUpBtn(_ sender: GIDSignInButton) {
         DispatchQueue.main.async {
@@ -118,3 +108,4 @@ class SignupViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+

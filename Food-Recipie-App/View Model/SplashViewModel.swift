@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-class SplashViewModel {
+class SplashViewModel: SplashViewModelProtocol {
     static let shared = SplashViewModel()
     
     func isUserAuthenticated() -> Bool {

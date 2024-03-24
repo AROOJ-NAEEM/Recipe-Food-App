@@ -20,7 +20,11 @@ class NotificationCollectionViewCell: UICollectionViewCell {
         borderView.layer.cornerRadius = 10
         borderView.layer.masksToBounds = true
     }
-    func configure(isRead: Bool) {
+    func configure(with notification: Notification) {
+        notiTitile.text = notification.title
+        notiDiscription.text = notification.description
+        notiTime.text = notification.timeAgo
+        let isRead = notification.isRead
         if isRead {
             statusBtn.backgroundColor = UIColor(named: "buttonColor")
             statusBtn.setImage(UIImage(systemName: "square.fill"), for: .normal)
@@ -34,7 +38,6 @@ class NotificationCollectionViewCell: UICollectionViewCell {
 
         statusBtn.layer.cornerRadius = 10
         statusBtn.layer.masksToBounds = true
-
     }
 
 }

@@ -41,7 +41,7 @@ extension HomeViewController: UICollectionViewDataSource {
             print("IndexPath: \(indexPath), Origin Count: \(homeViewModel.origin.count)")
             let origin = homeViewModel.origin[indexPath.row]
             cell3.configure(with: origin)
-            //cell3.delegate = self
+            cell3.delegate = self
             return cell3
 
         default:
@@ -59,6 +59,7 @@ extension HomeViewController: UICollectionViewDelegate {
         if collectionView == recipeCollectionView {
             let recipeDetailViewModel = RecipeDetailViewModel()
             let recipe = homeViewModel.originFilteredRecipes[indexPath.row]
+            print("home recipe data \(recipe)")
             recipeDetailViewModel.configure(with: recipe)
             performSegue(withIdentifier: "ViewRecipeDetails", sender: recipeDetailViewModel)
         }
@@ -120,26 +121,4 @@ extension HomeViewController: FilterButtonDelegate {
     }
 }
 
-//extension HomeViewController: RecipeCellDelegate {
-//    func didPressSaveButton(in cell: RecipeCollectionViewCell) {
-//        //guard let parentCell = cell.superview?.superview as? RecipeCollectionViewCell else {
-////                return
-////            }
-// //   let allRecipes = homeViewModel.originFilteredRecipes
-////        print(" Value  == \(allRecipes.contains(where: { $0.status }))")
-////        if allRecipes.contains(where: { $0.status }) {
-////            cell.saveBtn.isEnabled = false
-////        } else {
-////            cell.saveBtn.isEnabled = true
-////        }
-//        DispatchQueue.main.async {
-//           // self.recipeCollectionView.reloadData()
-//        }
-//   }
-//}
-//extension HomeViewController: RecipeSaveButtonDelegate {
-//    func didPressSaveButton() {
-//        recipeCollectionView.reloadData()
-//    }
-//}
 

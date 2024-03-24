@@ -21,5 +21,10 @@ class ProcedureTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func configure(with procedureItem: (Int, String)) {
+        let (stepNumberValue, stepDetailValue) = procedureItem
+        stepNumber.text = "Step \(stepNumberValue)"
+        stepDetail.text = stepDetailValue
+    }
     
 }

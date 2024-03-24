@@ -9,8 +9,7 @@ import UIKit
 import RealmSwift
 
 class SavedRecipeViewController: UIViewController {
-
-    let realm = try! Realm()
+    
     let viewModel = SavedRecipeViewModel()
     let recipeManager = RecipeCollectionViewCell()
     var recipes: Results<Recipes>?
@@ -19,13 +18,18 @@ class SavedRecipeViewController: UIViewController {
     @IBOutlet weak var savedRecipeCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        recipeManager.reloadDelegate = self
+        setupUI()
+        fetchRecipes()
+        savedRecipeCollectionView.reloadData()
+    }
+    
+    func setupUI() {
         savedRecipeCollectionView.dataSource = self
         savedRecipeCollectionView.delegate = self
         savedRecipeCollectionView.register(UINib(nibName: "SavedRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        // Do any additional setup after loading the view.
-        
-        
+    }
+    
+    func fetchRecipes() {
         viewModel.fetchRecipes { recipe, error in
             self.recipes = recipe
         }
@@ -34,9 +38,7 @@ class SavedRecipeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchRecipes { recipe, error in
-            self.recipes = recipe
-        }
+        fetchRecipes()
         savedRecipeCollectionView.reloadData()
     }
 

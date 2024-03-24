@@ -19,18 +19,25 @@ class NotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
+        setupCollectionView()
+        viewModel = NotificationViewModel(databaseManager: databaseManager)
+        fetchNotifications()
+    }
+    
+    func setupUI() {
         todayActivityIndicator.startAnimating()
         yesterdayActivityIndicator.startAnimating()
-        // Do any additional setup after loading the view.
+    }
+    
+    func setupCollectionView() {
         yesterdayCollectionView.dataSource = self
         yesterdayCollectionView.register(UINib(nibName: "YesterdayCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         todayCollectionView.dataSource = self
         todayCollectionView.register(UINib(nibName: "NotificationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
-        viewModel = NotificationViewModel(databaseManager: databaseManager)
-        fetchNotifications()
     }
+    
     private func fetchNotifications() {
         viewModel.fetchNotifications { [weak self] in
             self?.updateCollectionView()

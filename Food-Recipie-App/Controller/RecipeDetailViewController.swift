@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 class RecipeDetailViewController: UIViewController {
 
@@ -24,19 +23,25 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupUI()
+        setupTableView()
+    }
+    
+    func setupUI() {
         if let img = recipeDetailViewModel.img {
             recipeImg.sd_setImage(with: img, placeholderImage: UIImage(named: "Recipe's Image"))
         }
         recipeName.text = recipeDetailViewModel.name
         timeToCook.text = "⏱ \(recipeDetailViewModel.time)"
         itemCount.text = "\(recipeDetailViewModel.count) Items"
-        
+    }
+    
+    func setupTableView() {
         ingredientTableView.dataSource = self
         ingredientTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         
         procedureTableView.dataSource = self
         procedureTableView.register(UINib(nibName: "ProcedureTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        
     }
     
     @IBAction func ingredientBtnPressed(_ sender: Any) {
