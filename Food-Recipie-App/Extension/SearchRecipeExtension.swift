@@ -18,7 +18,8 @@ extension SearchRecipeViewController: UICollectionViewDataSource {
         let cell = searchRecipeCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SearchRecipeCollectionViewCell
         if let imageUrl = URL(string: filterRecipes[indexPath.row].image) {
             print("Loading image from \(imageUrl)")
-            cell.recipeImage.load(url: imageUrl)
+            //cell.recipeImage.load(url: imageUrl)
+            cell.recipeImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "Recipe's Image"))
         } else {
             print("Invalid image URL")
         }
@@ -44,24 +45,31 @@ extension SearchRecipeViewController: UISearchBarDelegate {
 }
 
 extension SearchRecipeViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
+//        let recipeDetailViewModel = RecipeDetailViewModel()
+//        recipeDetailViewModel.name = Recipe.all[indexPath.row].name
+//        if let imageUrl = URL(string: Recipe.all[indexPath.row].image) {
+//            print("Loading image from \(imageUrl)")
+//            recipeDetailViewModel.img = imageUrl
+//        } else {
+//            print("Invalid image URL")
+//        }
+//        recipeDetailViewModel.time = Recipe.all[indexPath.row].requiredTime
+//        recipeDetailViewModel.count = Recipe.all[indexPath.row].ingredients.count
+//        recipeDetailViewModel.ingredient = Recipe.all[indexPath.row].ingredients
+//        recipeDetailViewModel.procedure = Recipe.all[indexPath.row].procedure
+//        newViewController.recipeDetailViewModel = recipeDetailViewModel
+//        let navigationController = UINavigationController(rootViewController: newViewController)
+//        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+//        appdelegate.window!.rootViewController = navigationController
+//    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
+        let newViewController = RecipeDetailViewController()
         let recipeDetailViewModel = RecipeDetailViewModel()
-        recipeDetailViewModel.name = Recipe.all[indexPath.row].name
-        if let imageUrl = URL(string: Recipe.all[indexPath.row].image) {
-            print("Loading image from \(imageUrl)")
-            recipeDetailViewModel.img = imageUrl
-        } else {
-            print("Invalid image URL")
-        }
-        recipeDetailViewModel.time = Recipe.all[indexPath.row].requiredTime
-        recipeDetailViewModel.count = Recipe.all[indexPath.row].ingredients.count
-        recipeDetailViewModel.ingredient = Recipe.all[indexPath.row].ingredients
-        recipeDetailViewModel.procedure = Recipe.all[indexPath.row].procedure
+        recipeDetailViewModel.configure(with: Recipe.all[indexPath.row])
         newViewController.recipeDetailViewModel = recipeDetailViewModel
-        let navigationController = UINavigationController(rootViewController: newViewController)
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        appdelegate.window!.rootViewController = navigationController
+        navigationController?.pushViewController(newViewController, animated: true)
     }
 }

@@ -26,15 +26,12 @@ class FilterViewController: UIViewController {
         sheetPresentationController?.detents = [.medium(), .large()]
         
         timeCollectionView.dataSource = self
-        //timeCollectionView.delegate = self
         timeCollectionView.register(UINib(nibName: "TimeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         rateCollectionView.dataSource = self
-        //rateCollectionView.delegate = self
         rateCollectionView.register(UINib(nibName: "RateCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         categoryCollectionView.dataSource = self
-        //categoryCollectionView.delegate = self
         categoryCollectionView.register(UINib(nibName: "FilterCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
     }
     

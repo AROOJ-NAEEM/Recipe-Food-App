@@ -10,73 +10,40 @@ import UIKit
 
 extension NotificationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == todayCollectionView {
+        switch collectionView {
+        case todayCollectionView:
             let filteredNotifications: [Notification]
-            switch viewModel.filterState {
-            case .all:
-                filteredNotifications = viewModel.notifications
-            case .read:
-                filteredNotifications = viewModel.notifications.filter { $0.isRead }
-            case .unread:
-                filteredNotifications = viewModel.notifications.filter { !$0.isRead }
-            }
+            filteredNotifications = viewModel.filteredNotifications
             return filteredNotifications.count
-        } else if collectionView == yesterdayCollectionView {
+        case yesterdayCollectionView:
             let newFilteredNotifications: [Notification]
-            switch viewModel.filterState {
-            case .all:
-                newFilteredNotifications = viewModel.notifications
-            case .read:
-                newFilteredNotifications = viewModel.notifications.filter { $0.isRead }
-            case .unread:
-                newFilteredNotifications = viewModel.notifications.filter { !$0.isRead }
-            }
+            newFilteredNotifications = viewModel.filteredNotifications
             return newFilteredNotifications.count
+        default:
+            return 0
         }
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == todayCollectionView {
+        switch collectionView {
+        case todayCollectionView:
             let cell = todayCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NotificationCollectionViewCell
             let filteredNotifications: [Notification]
-            switch viewModel.filterState {
-            case .all:
-                filteredNotifications = viewModel.notifications
-            case .read:
-                filteredNotifications = viewModel.notifications.filter { $0.isRead }
-            case .unread:
-                filteredNotifications = viewModel.notifications.filter { !$0.isRead }
-            }
-            
+            filteredNotifications = viewModel.filteredNotifications
             let notification = filteredNotifications[indexPath.item]
-            cell.notiTitile.text = notification.title
-            cell.notiDiscription.text = notification.description
-            cell.notiTime.text = notification.timeAgo
-            cell.configure(isRead: notification.isRead)
+            cell.configure(with: notification)
             
             return cell
-        } else if collectionView == yesterdayCollectionView {
+        case yesterdayCollectionView:
             let cell = yesterdayCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! YesterdayCollectionViewCell
             let newFilteredNotifications: [Notification]
-            switch viewModel.filterState {
-            case .all:
-                newFilteredNotifications = viewModel.notifications
-            case .read:
-                newFilteredNotifications = viewModel.notifications.filter { $0.isRead }
-            case .unread:
-                newFilteredNotifications = viewModel.notifications.filter { !$0.isRead }
-            }
-            
+            newFilteredNotifications = viewModel.filteredNotifications
             let notification = newFilteredNotifications[indexPath.item]
-            cell.notiTitile.text = notification.title
-            cell.notiDiscription.text = notification.description
-            cell.notiTime.text = notification.timeAgo
-            cell.configure(isRead: notification.isRead)
-                
+            cell.configure(with: notification)
             return cell
+        default:
+            return UICollectionViewCell()
         }
-        return UICollectionViewCell()
     }
     
     func updateCollectionView() {

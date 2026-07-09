@@ -47,7 +47,6 @@
 		D7B585E72BA6DDAC002DED77 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B585E62BA6DDAC002DED77 /* Recipes.swift */; };
 		D7B585ED2BA6E24A002DED77 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B585EC2BA6E24A002DED77 /* Procedure.swift */; };
 		D7B585EF2BA6E2B5002DED77 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B585EE2BA6E2B5002DED77 /* Ingredient.swift */; };
-		D7B585F12BA70ADE002DED77 /* RecipeCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B585F02BA70ADE002DED77 /* RecipeCellDelegate.swift */; };
 		D7B585F42BA77B18002DED77 /* SavedRecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B585F22BA77B18002DED77 /* SavedRecipeCollectionViewCell.swift */; };
 		D7B585F52BA77B18002DED77 /* SavedRecipeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7B585F32BA77B18002DED77 /* SavedRecipeCollectionViewCell.xib */; };
 		D7B585F72BA84C9B002DED77 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B585F62BA84C9B002DED77 /* FilterViewController.swift */; };
@@ -59,8 +58,6 @@
 		D7B586032BA864E3002DED77 /* FilterCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7B586012BA864E3002DED77 /* FilterCategoryCollectionViewCell.xib */; };
 		D7B586052BA89844002DED77 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586042BA89844002DED77 /* FilterModel.swift */; };
 		D7B586072BA89F2D002DED77 /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586062BA89F2D002DED77 /* FilterManager.swift */; };
-		D7B586092BA8C7E2002DED77 /* RootUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586082BA8C7E2002DED77 /* RootUITabBarController.swift */; };
-		D7B5860B2BA8C99B002DED77 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5860A2BA8C99B002DED77 /* SlideInTransition.swift */; };
 		D7B5860D2BA8D0F0002DED77 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5860C2BA8D0F0002DED77 /* Notification.swift */; };
 		D7B586102BA8D477002DED77 /* NotificationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5860E2BA8D477002DED77 /* NotificationCollectionViewCell.swift */; };
 		D7B586112BA8D477002DED77 /* NotificationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7B5860F2BA8D477002DED77 /* NotificationCollectionViewCell.xib */; };
@@ -71,9 +68,22 @@
 		D7B5861B2BA98524002DED77 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5861A2BA98524002DED77 /* NotificationExtension.swift */; };
 		D7B5861D2BA98585002DED77 /* SavedRecipeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5861C2BA98585002DED77 /* SavedRecipeExtension.swift */; };
 		D7B5861F2BA985EB002DED77 /* FilterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5861E2BA985EB002DED77 /* FilterExtension.swift */; };
-		D7B586212BA98C87002DED77 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586202BA98C87002DED77 /* TabBarController.swift */; };
 		D7B586232BA9C5E0002DED77 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586222BA9C5E0002DED77 /* ForgetPasswordViewController.swift */; };
 		D7B5862B2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5862A2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift */; };
+		D7B586652BAC8590002DED77 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586642BAC8590002DED77 /* SplashViewModel.swift */; };
+		D7B586672BAD5759002DED77 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586662BAD5759002DED77 /* ProfileViewModel.swift */; };
+		D7B586692BAD7C5F002DED77 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586682BAD7C5F002DED77 /* RealmManager.swift */; };
+		D7B5866B2BAD7FEE002DED77 /* RecipeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5866A2BAD7FEE002DED77 /* RecipeCollectionViewCellViewModel.swift */; };
+		D7B5866D2BADC8D6002DED77 /* SavedRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5866C2BADC8D6002DED77 /* SavedRecipeViewModel.swift */; };
+		D7B5866F2BADCF00002DED77 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5866E2BADCF00002DED77 /* ForgetPasswordViewModel.swift */; };
+		D7B586712BADD294002DED77 /* TimeCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586702BADD294002DED77 /* TimeCollectionViewModel.swift */; };
+		D7B586732BADD3BF002DED77 /* RateCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586722BADD3BF002DED77 /* RateCollectionViewModel.swift */; };
+		D7B586752BADD3DB002DED77 /* FilterCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586742BADD3DB002DED77 /* FilterCategoryViewModel.swift */; };
+		D7B586772BAF827C002DED77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586762BAF827C002DED77 /* User.swift */; };
+		D7B586792BB015F1002DED77 /* SignUpExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B586782BB015F0002DED77 /* SignUpExtension.swift */; };
+		D7B5867B2BB0161C002DED77 /* LoginExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5867A2BB0161C002DED77 /* LoginExtension.swift */; };
+		D7B5867D2BB01932002DED77 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5867C2BB01932002DED77 /* ViewModelProtocol.swift */; };
+		D7B5867F2BB01943002DED77 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5867E2BB01943002DED77 /* ViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +140,6 @@
 		D7B585E62BA6DDAC002DED77 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		D7B585EC2BA6E24A002DED77 /* Procedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
 		D7B585EE2BA6E2B5002DED77 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		D7B585F02BA70ADE002DED77 /* RecipeCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCellDelegate.swift; sourceTree = "<group>"; };
 		D7B585F22BA77B18002DED77 /* SavedRecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7B585F32BA77B18002DED77 /* SavedRecipeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedRecipeCollectionViewCell.xib; sourceTree = "<group>"; };
 		D7B585F62BA84C9B002DED77 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +151,6 @@
 		D7B586012BA864E3002DED77 /* FilterCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		D7B586042BA89844002DED77 /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		D7B586062BA89F2D002DED77 /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
-		D7B586082BA8C7E2002DED77 /* RootUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootUITabBarController.swift; sourceTree = "<group>"; };
-		D7B5860A2BA8C99B002DED77 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		D7B5860C2BA8D0F0002DED77 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D7B5860E2BA8D477002DED77 /* NotificationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7B5860F2BA8D477002DED77 /* NotificationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -154,10 +161,23 @@
 		D7B5861A2BA98524002DED77 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		D7B5861C2BA98585002DED77 /* SavedRecipeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeExtension.swift; sourceTree = "<group>"; };
 		D7B5861E2BA985EB002DED77 /* FilterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterExtension.swift; sourceTree = "<group>"; };
-		D7B586202BA98C87002DED77 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D7B586222BA9C5E0002DED77 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		D7B586282BAAF1D6002DED77 /* Food-Recipie-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Food-Recipie-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B5862A2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food_Recipie_AppTests.swift; sourceTree = "<group>"; };
+		D7B586642BAC8590002DED77 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		D7B586662BAD5759002DED77 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D7B586682BAD7C5F002DED77 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		D7B5866A2BAD7FEE002DED77 /* RecipeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		D7B5866C2BADC8D6002DED77 /* SavedRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeViewModel.swift; sourceTree = "<group>"; };
+		D7B5866E2BADCF00002DED77 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
+		D7B586702BADD294002DED77 /* TimeCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewModel.swift; sourceTree = "<group>"; };
+		D7B586722BADD3BF002DED77 /* RateCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCollectionViewModel.swift; sourceTree = "<group>"; };
+		D7B586742BADD3DB002DED77 /* FilterCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCategoryViewModel.swift; sourceTree = "<group>"; };
+		D7B586762BAF827C002DED77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D7B586782BB015F0002DED77 /* SignUpExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpExtension.swift; sourceTree = "<group>"; };
+		D7B5867A2BB0161C002DED77 /* LoginExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginExtension.swift; sourceTree = "<group>"; };
+		D7B5867C2BB01932002DED77 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		D7B5867E2BB01943002DED77 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
 		FD87EAFD5F24FDDFD61F62F7 /* Pods-Food-Recipie-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food-Recipie-App.debug.xcconfig"; path = "Target Support Files/Pods-Food-Recipie-App/Pods-Food-Recipie-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +246,7 @@
 				D764F79F2B9A0950009CA39C /* Controller */,
 				D764F7B02B9EFDBA009CA39C /* View */,
 				D764F7D02BA17671009CA39C /* Extension */,
+				D7B586802BB0194A002DED77 /* Protocol */,
 				D7B585C62BA27C8D002DED77 /* Services */,
 				D7B585E52BA5C364002DED77 /* Data Model */,
 				D764F7902B99D6B4009CA39C /* Assets.xcassets */,
@@ -279,13 +300,10 @@
 				D7B585FD2BA85D15002DED77 /* RateCollectionViewCell.xib */,
 				D7B586002BA864E3002DED77 /* FilterCategoryCollectionViewCell.swift */,
 				D7B586012BA864E3002DED77 /* FilterCategoryCollectionViewCell.xib */,
-				D7B586082BA8C7E2002DED77 /* RootUITabBarController.swift */,
-				D7B5860A2BA8C99B002DED77 /* SlideInTransition.swift */,
 				D7B5860E2BA8D477002DED77 /* NotificationCollectionViewCell.swift */,
 				D7B5860F2BA8D477002DED77 /* NotificationCollectionViewCell.xib */,
 				D7B586122BA8E230002DED77 /* YesterdayCollectionViewCell.swift */,
 				D7B586132BA8E230002DED77 /* YesterdayCollectionViewCell.xib */,
-				D7B586202BA98C87002DED77 /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,6 +316,14 @@
 				D764F7CC2BA17295009CA39C /* HomeViewModel.swift */,
 				D7B585D92BA425C4002DED77 /* RecipeDetailViewModel.swift */,
 				D7B586182BA98509002DED77 /* NotificationViewModel.swift */,
+				D7B586642BAC8590002DED77 /* SplashViewModel.swift */,
+				D7B586662BAD5759002DED77 /* ProfileViewModel.swift */,
+				D7B5866A2BAD7FEE002DED77 /* RecipeCollectionViewCellViewModel.swift */,
+				D7B5866C2BADC8D6002DED77 /* SavedRecipeViewModel.swift */,
+				D7B5866E2BADCF00002DED77 /* ForgetPasswordViewModel.swift */,
+				D7B586702BADD294002DED77 /* TimeCollectionViewModel.swift */,
+				D7B586722BADD3BF002DED77 /* RateCollectionViewModel.swift */,
+				D7B586742BADD3DB002DED77 /* FilterCategoryViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -309,6 +335,7 @@
 				D7B586042BA89844002DED77 /* FilterModel.swift */,
 				D7B5860C2BA8D0F0002DED77 /* Notification.swift */,
 				D7B586162BA8EAE1002DED77 /* FilterState.swift */,
+				D7B586762BAF827C002DED77 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,10 +346,11 @@
 				D764F7CE2BA1766B009CA39C /* HomeExtension.swift */,
 				D7B585D72BA42504002DED77 /* RecipeDetailExtension.swift */,
 				D7B585E12BA48E50002DED77 /* SearchRecipeExtension.swift */,
-				D7B585F02BA70ADE002DED77 /* RecipeCellDelegate.swift */,
 				D7B5861A2BA98524002DED77 /* NotificationExtension.swift */,
 				D7B5861C2BA98585002DED77 /* SavedRecipeExtension.swift */,
 				D7B5861E2BA985EB002DED77 /* FilterExtension.swift */,
+				D7B586782BB015F0002DED77 /* SignUpExtension.swift */,
+				D7B5867A2BB0161C002DED77 /* LoginExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -332,6 +360,7 @@
 			children = (
 				D7B585C42BA27C87002DED77 /* DatabaseManager.swift */,
 				D7B586062BA89F2D002DED77 /* FilterManager.swift */,
+				D7B586682BAD7C5F002DED77 /* RealmManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -352,6 +381,15 @@
 				D7B5862A2BAAF1D7002DED77 /* Food_Recipie_AppTests.swift */,
 			);
 			path = "Food-Recipie-AppTests";
+			sourceTree = "<group>";
+		};
+		D7B586802BB0194A002DED77 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D7B5867C2BB01932002DED77 /* ViewModelProtocol.swift */,
+				D7B5867E2BB01943002DED77 /* ViewProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,29 +554,34 @@
 				D764F7C32B9F7AFF009CA39C /* RecipeCardCollectionViewCell.swift in Sources */,
 				D7B585DC2BA4696F002DED77 /* SearchRecipeViewController.swift in Sources */,
 				D7B586142BA8E230002DED77 /* YesterdayCollectionViewCell.swift in Sources */,
+				D7B586732BADD3BF002DED77 /* RateCollectionViewModel.swift in Sources */,
 				D7B585F42BA77B18002DED77 /* SavedRecipeCollectionViewCell.swift in Sources */,
 				D7B585FA2BA856B1002DED77 /* TimeCollectionViewCell.swift in Sources */,
 				D764F7A32B9A155D009CA39C /* SignupViewController.swift in Sources */,
 				D7B585FE2BA85D15002DED77 /* RateCollectionViewCell.swift in Sources */,
 				D7B586022BA864E3002DED77 /* FilterCategoryCollectionViewCell.swift in Sources */,
 				D764F7BC2B9F33C9009CA39C /* NotificationViewController.swift in Sources */,
+				D7B586672BAD5759002DED77 /* ProfileViewModel.swift in Sources */,
 				D7B586192BA9850A002DED77 /* NotificationViewModel.swift in Sources */,
-				D7B585F12BA70ADE002DED77 /* RecipeCellDelegate.swift in Sources */,
+				D7B5867B2BB0161C002DED77 /* LoginExtension.swift in Sources */,
+				D7B586692BAD7C5F002DED77 /* RealmManager.swift in Sources */,
 				D7B5861D2BA98585002DED77 /* SavedRecipeExtension.swift in Sources */,
+				D7B586792BB015F1002DED77 /* SignUpExtension.swift in Sources */,
 				D764F7C02B9F60CA009CA39C /* RecipeModel.swift in Sources */,
 				D7B585D82BA42504002DED77 /* RecipeDetailExtension.swift in Sources */,
 				D7B586052BA89844002DED77 /* FilterModel.swift in Sources */,
 				D764F7B22B9EFFDE009CA39C /* SignupViewModel.swift in Sources */,
+				D7B5867D2BB01932002DED77 /* ViewModelProtocol.swift in Sources */,
+				D7B586772BAF827C002DED77 /* User.swift in Sources */,
 				D7B585E22BA48E50002DED77 /* SearchRecipeExtension.swift in Sources */,
 				D7B585D52BA33DEA002DED77 /* ProcedureTableViewCell.swift in Sources */,
-				D7B586092BA8C7E2002DED77 /* RootUITabBarController.swift in Sources */,
 				D764F7882B99D6B2009CA39C /* AppDelegate.swift in Sources */,
 				D7B585ED2BA6E24A002DED77 /* Procedure.swift in Sources */,
+				D7B5866B2BAD7FEE002DED77 /* RecipeCollectionViewCellViewModel.swift in Sources */,
 				D7B585EF2BA6E2B5002DED77 /* Ingredient.swift in Sources */,
 				D7B586102BA8D477002DED77 /* NotificationCollectionViewCell.swift in Sources */,
 				D764F7BA2B9F330F009CA39C /* SavedRecipeViewController.swift in Sources */,
 				D7B585D12BA33DDB002DED77 /* IngredientTableViewCell.swift in Sources */,
-				D7B5860B2BA8C99B002DED77 /* SlideInTransition.swift in Sources */,
 				D7B585DF2BA469A6002DED77 /* SearchRecipeCollectionViewCell.swift in Sources */,
 				D7B585F72BA84C9B002DED77 /* FilterViewController.swift in Sources */,
 				D7B5861B2BA98524002DED77 /* NotificationExtension.swift in Sources */,
@@ -546,16 +589,21 @@
 				D764F7CF2BA1766B009CA39C /* HomeExtension.swift in Sources */,
 				D764F7A12B9A1515009CA39C /* LoginViewController.swift in Sources */,
 				D764F7A52B9B2A1E009CA39C /* HomeViewController.swift in Sources */,
+				D7B5866F2BADCF00002DED77 /* ForgetPasswordViewModel.swift in Sources */,
 				D764F7C62BA07267009CA39C /* RecipeCollectionViewCell.swift in Sources */,
+				D7B586712BADD294002DED77 /* TimeCollectionViewModel.swift in Sources */,
 				D7B585DA2BA425C4002DED77 /* RecipeDetailViewModel.swift in Sources */,
+				D7B5866D2BADC8D6002DED77 /* SavedRecipeViewModel.swift in Sources */,
+				D7B586752BADD3DB002DED77 /* FilterCategoryViewModel.swift in Sources */,
+				D7B5867F2BB01943002DED77 /* ViewProtocol.swift in Sources */,
 				D764F7D82BA1F47B009CA39C /* RecipeDetailViewController.swift in Sources */,
 				D7B586072BA89F2D002DED77 /* FilterManager.swift in Sources */,
 				D764F7D52BA1D495009CA39C /* CategoryCollectionViewCell.swift in Sources */,
 				D7B586232BA9C5E0002DED77 /* ForgetPasswordViewController.swift in Sources */,
 				D7B585E72BA6DDAC002DED77 /* Recipes.swift in Sources */,
 				D7B586172BA8EAE1002DED77 /* FilterState.swift in Sources */,
-				D7B586212BA98C87002DED77 /* TabBarController.swift in Sources */,
 				D7B5861F2BA985EB002DED77 /* FilterExtension.swift in Sources */,
+				D7B586652BAC8590002DED77 /* SplashViewModel.swift in Sources */,
 				D764F79E2B9A0932009CA39C /* SplashViewController.swift in Sources */,
 				D7B5860D2BA8D0F0002DED77 /* Notification.swift in Sources */,
 				D764F7B52B9F075D009CA39C /* LoginViewModel.swift in Sources */,

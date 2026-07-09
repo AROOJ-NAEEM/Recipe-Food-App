@@ -5,22 +5,18 @@
 //  Created by Dev on 3/18/24.
 //
 
-// Todos
-/*
-- Auth state
-- SDWebimage to load images in cells
-- Tweak UI where ever is needed.
-- Add loader while user is being loggin in.
-*/
 import UIKit
 
 class TimeCollectionViewCell: UICollectionViewCell {
+    var viewModel = TimeCollectionViewModel()
     @IBOutlet private weak var timeLabel: UILabel!
     
     override var isSelected: Bool {
         didSet{
             toggleBackgroundColor()
-            FilterManager.shared.filter.time = self.timeLabel.text ?? ""
+            if let timeLabel = self.timeLabel.text {
+                viewModel.storeTimeLabelVlaue(timeLabel: timeLabel)
+            }
         }
     }
     
@@ -39,6 +35,7 @@ class TimeCollectionViewCell: UICollectionViewCell {
     private func toggleBackgroundColor() {
         if isSelected {
             self.backgroundColor = UIColor(named: "buttonColor")
+            timeLabel.textColor = .white
         }else {
             self.backgroundColor = .white
         }

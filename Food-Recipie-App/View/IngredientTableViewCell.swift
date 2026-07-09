@@ -23,4 +23,12 @@ class IngredientTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure(with ingredientItem: (String, String, String)) {
+        let (name, imageURLString, weight) = ingredientItem
+        ingredientName.text = name
+        ingredentWeight.text = weight
+        if let imageURL = URL(string: imageURLString) {
+            ingredientImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "Recipe's Image"))
+        }
+    }
 }

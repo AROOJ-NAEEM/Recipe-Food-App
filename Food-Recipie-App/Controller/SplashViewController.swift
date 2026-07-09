@@ -9,18 +9,18 @@ import UIKit
 
 class SplashViewController: UIViewController {
 
-    
     @IBOutlet weak var gradient: UIView!
     @IBOutlet weak var background: UIImageView!
     var gradientLayer: CAGradientLayer!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Loop through your Recipe.all array and store each recipe in Firestore
         // Do any additional setup after loading the view.
+        addGradient()
+    }
+    
+    func addGradient() {
         gradientLayer = CAGradientLayer()
         if let gradientConfigurationBounds = gradient?.bounds {
-            //let gradientLayer = CAGradientLayer()
-            
             gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
             gradientLayer.locations = [0.0, 1.0]
             
@@ -40,15 +40,25 @@ class SplashViewController: UIViewController {
     }
     
     @IBAction func startBtnPress(_ sender: UIButton) {
-        print("Button Prssed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-               return
-           }
-        appDelegate.window?.rootViewController = loginViewController
-        appDelegate.window?.makeKeyAndVisible()
+        let isAuthenticated = SplashViewModel.shared.isUserAuthenticated()
+        navigateToInitialScreen(isAuthenticated: isAuthenticated)
     }
-    
+
+    func navigateToInitialScreen(isAuthenticated: Bool) {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController: UIViewController
+            if isAuthenticated {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+            } else {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                fatalError("appdelegate nil")
+            }
+            appDelegate.window?.rootViewController = initialViewController
+            appDelegate.window?.makeKeyAndVisible()
+        }
+    }
     
 }

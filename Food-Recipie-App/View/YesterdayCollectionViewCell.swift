@@ -20,13 +20,18 @@ class YesterdayCollectionViewCell: UICollectionViewCell {
         borderView.layer.cornerRadius = 10
         borderView.layer.masksToBounds = true
     }
-    func configure(isRead: Bool) {
+    func configure(with notification: Notification) {
+        notiTitile.text = notification.title
+        notiDiscription.text = notification.description
+        notiTime.text = notification.timeAgo
+        let isRead = notification.isRead
         if isRead {
             statusBtn.backgroundColor = UIColor(named: "buttonColor")
             statusBtn.setImage(UIImage(systemName: "square.fill"), for: .normal)
         } else {
             statusBtn.setImage(UIImage(systemName: "app.badge.fill"), for: .normal)
             statusBtn.backgroundColor = .red
+
         }
         statusBtn.setBackgroundImage(nil, for: .selected)
         statusBtn.setBackgroundImage(nil, for: .highlighted)

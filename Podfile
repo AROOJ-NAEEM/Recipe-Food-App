@@ -11,5 +11,6 @@ target 'Food-Recipie-App' do
   pod 'GoogleSignIn'
   pod 'RealmSwift' , '10.39.0'
   pod 'SideMenu'
+  pod 'SDWebImage'
 
 end

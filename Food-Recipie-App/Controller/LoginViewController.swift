@@ -10,25 +10,35 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var googleActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    //@IBOutlet weak var googleSignIn: GIDSignInButton!
     
     let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = true
+            self.googleActivityIndicator.isHidden = true
+        }
+        viewModel.delegate = self
     }
     
-    @IBAction func signInPressed(_ sender: Any) {
+    @IBAction func signInPressed(_ sender: UIButton) {
+        sender.setTitle("", for: .normal)
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
         guard let email = emailTextField.text,
               let password = passwordTextField.text else { return }
         viewModel.LogIn(email: email, password: password) { success, errorMessage in
             if success {
                 //Nagivate to home view controller
                 DispatchQueue.main.async {
-                    //self.performSegue(withIdentifier: "LoginToHome", sender: self)
+                    self.activityIndicator.stopAnimating()
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as? UITabBarController else { return }
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -38,49 +48,65 @@ class LoginViewController: UIViewController {
                     appDelegate.window?.makeKeyAndVisible()
                 }
             } else {
-                self.displayError(errorMessage)
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    sender.setTitle("Sign In →", for: .normal)
+                    self.displayError(errorMessage)
+                }
             }
         }
         
     }
     
     @IBAction func googleSignInBtn(_ sender: GIDSignInButton) {
+        DispatchQueue.main.async {
+            self.googleActivityIndicator.isHidden = false
+            self.googleActivityIndicator.startAnimating()
+        }
         viewModel.LogInWithGoogle(presentingViewController: self) { success, errorMessage in
             if success {
-                // Navigate to home view controller upon successful signup
+                // Navigate to home view controller
                 DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as? UITabBarController else { return }
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                           return
-                       }
-                    appDelegate.window?.rootViewController = loginViewController
-                    appDelegate.window?.makeKeyAndVisible()
-                }
+                    self.googleActivityIndicator.stopAnimating()
+                    self.navigateToHomeScreen()                }
             } else {
-                self.displayError(errorMessage)
+                DispatchQueue.main.async {
+                    self.googleActivityIndicator.stopAnimating()
+                    self.googleActivityIndicator.isHidden = true
+                    self.displayError(errorMessage)
+                }
             }
         }
     }
-        
-    @IBAction func signUpPressed(_ sender: UIButton) {
+    
+    func navigateToHomeScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController else { return }
+        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as? UITabBarController else { return }
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                return
            }
         appDelegate.window?.rootViewController = loginViewController
         appDelegate.window?.makeKeyAndVisible()
     }
+        
+    @IBAction func signUpPressed(_ sender: UIButton) {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController else { return }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                   return
+               }
+            appDelegate.window?.rootViewController = loginViewController
+            appDelegate.window?.makeKeyAndVisible()
+        }
+    }
     
     @IBAction func forgetBtnPressed(_ sender: UIButton) {
-        guard let forgetViewController = storyboard?.instantiateViewController(withIdentifier: "ForgetPasswordViewController") as? ForgetPasswordViewController else { return }
-        present(forgetViewController, animated: true, completion: nil)
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//               return
-//           }
-//        appDelegate.window?.rootViewController = forgetViewController
-//        appDelegate.window?.makeKeyAndVisible()
+        DispatchQueue.main.async {
+            guard let forgetViewController = self.storyboard?.instantiateViewController(withIdentifier: "ForgetPasswordViewController") as? ForgetPasswordViewController else { return }
+            self.present(forgetViewController, animated: true, completion: nil)
+        }
     }
     
     func displayError(_ errorMessage: String?) {
@@ -88,4 +114,6 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
 }
+

@@ -6,37 +6,17 @@
 //
 
 import UIKit
-import RealmSwift
-import FirebaseFirestore
-import SwiftUI
 
 class RecipeCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var rateView: UIView!
-    let realm = try! Realm()
-    var recipe: [Recipes] = []
-    var ingredient: [Ingredient] = []
-    var procedures: [Procedure] = []
+    private var viewModel: RecipeCollectionViewCellViewModel?
     
-    var creator: String = ""
-    var publishedDate: String = ""
-    var ingredients: [String: [String: String]] = [:]
-    var category = ""
-    var procedure: [[String: Any]] = []
-    var rating: Int = 0
-    var origin = ""
-    var creatorImage: String = ""
-    var recipeImage1: String = ""
-    var status: Bool = false
-
-    weak var delegate: RecipeCellDelegate?
-    weak var reloadDelegate: SavedRecipeDelegate?
-    
+    @IBOutlet private weak var rateView: UIView!
     @IBOutlet weak var saveBtn: UIButton!
-    @IBOutlet weak var recipeCard: UIView!
-    @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var timeToCook: UILabel!
-    @IBOutlet weak var recipeRating: UILabel!
+    @IBOutlet private weak var recipeCard: UIView!
+    @IBOutlet private weak var recipeImage: UIImageView!
+    @IBOutlet private weak var recipeName: UILabel!
+    @IBOutlet private weak var timeToCook: UILabel!
+    @IBOutlet private weak var recipeRating: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,107 +26,61 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         recipeCard.layer.cornerRadius = recipeCard.frame.size.height / 10
         rateView.layer.cornerRadius = rateView.frame.size.height / 2
         rateView.layer.masksToBounds = true
+        
+        viewModel = RecipeCollectionViewCellViewModel()
     }
     func updateStatus(_ status: Bool) {
-        self.status = status
+        self.viewModel?.status = status
         if status {
             saveBtn.isEnabled = false
-//            saveBtn.setImage(UIImage(named: "checkmark"), for: .normal)
-//            saveBtn.backgroundColor = UIColor(named: "buttonColor")
         } else {
             saveBtn.isEnabled = true
         }
     }
     @IBAction func saveRecipePressed(_ sender: UIButton) {
-        let newRecipe = Recipes()
-        let newIngredient = Ingredient()
-        let newProcedure = Procedure()
-        newRecipe.name = recipeName.text ?? ""
-        newRecipe.image = recipeImage1
-        newRecipe.requiredTime = timeToCook.text ?? ""
-        newRecipe.creator = creator
-        newRecipe.publishedDate = publishedDate
-        newRecipe.category = category
-        newRecipe.rating = rating
-        newRecipe.origin = origin
-        newRecipe.creatorImage = creatorImage
         
-        for (ingredientName, _) in ingredients {
-            let newIngredient = Ingredient()
-            newIngredient.name = ingredientName
+        if let viewModel = viewModel {
             
-            if let ingredientData = ingredients[ingredientName] {
-                for (ingredientImage, ingredientQuantity) in ingredientData {
-                    newIngredient.image = ingredientImage
-                    newIngredient.quantity = ingredientQuantity
-                }
-            }
-            ingredient.append(newIngredient)
-        }
-        newRecipe.ingredients.append(objectsIn: ingredient)
-
-        for stepDict in procedure {
-            let newProcedure = Procedure()
-            if let stepDetail = stepDict["stepDetail"] as? String,
-               let stepNumber = stepDict["stepNumber"] as? Int {
-                newProcedure.stepDetail = stepDetail
-                newProcedure.stepNumber = stepNumber
-                newRecipe.procedure.append(newProcedure)
-            }
+            let newRecipe = viewModel.createNewRecipe(withName: recipeName.text ?? "",
+                                                      imageURL: viewModel.recipeImage,
+                                                      requiredTime: timeToCook.text ?? "",
+                                                      creator: viewModel.creator,
+                                                      publishedDate: viewModel.publishedDate,
+                                                      category: viewModel.category,
+                                                      rating: viewModel.rating,
+                                                      origin: viewModel.origin,
+                                                      creatorImage: viewModel.creatorImage,
+                                                      ingredients: viewModel.ingredients,
+                                                      procedures: viewModel.procedure)
+            viewModel.saveRecipes(recipe: newRecipe)
+                
+            let recipeName = recipeName.text ?? ""
+            viewModel.updateRecipeStatus(withName: recipeName)
         }
         
-        recipe.append(newRecipe)
-        ingredient.append(newIngredient)
-        procedures.append(newProcedure)
         
-        
-        saveRecipes(recipe: newRecipe)
-        
-        let recipeName = recipeName.text ?? ""
-        let db = Firestore.firestore()
-
-        db.collection("recipes")
-            .whereField("name", isEqualTo: recipeName)
-            .getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    guard let documents = querySnapshot?.documents else {
-                        print("No documents found")
-                        return
-                    }
-                    if let document = documents.first {
-                        let recipeID = document.documentID
-                        let recipeRef = db.collection("recipes").document(recipeID)
-                        recipeRef.updateData(["status": true]) { error in
-                            if let error = error {
-                                print("Error updating document: \(error)")
-                            } else {
-                                print("Document successfully updated")
-                                self.saveBtn.isEnabled = false
-                            }
-                        }
-                    } else {
-                        print("Recipe with name '\(recipeName)' not found")
-                    }
-                }
-            }
-        delegate?.didPressSaveButton(in: self)
-//        sender.isEnabled = false
-//        sender.setImage(UIImage(named: "checkmark"), for: .normal)
-//        sender.backgroundColor = UIColor(named: "buttonColor")
+        updateStatus(true)
     }
     
-    func saveRecipes(recipe: Recipes) {
-        do {
-            try realm.write {
-                realm.add(recipe)
-//                realm.add(ingredient)
-//                realm.add(procedure)
-                reloadDelegate?.recipesDidChange()
+    func configure(with recipe: Recipe) {
+        viewModel?.recipeImage = recipe.image
+        viewModel?.creator = recipe.creator
+        viewModel?.publishedDate = recipe.publishedDate
+        viewModel?.category = recipe.category
+        viewModel?.procedure = recipe.procedure
+        viewModel?.rating = recipe.rating
+        viewModel?.origin = recipe.origin
+        viewModel?.creatorImage = recipe.creatorImage
+        viewModel?.ingredients = recipe.ingredients
+        viewModel?.status = recipe.status
+        updateStatus(recipe.status)
+        recipeRating.text = "\(recipe.rating)"
+        if let imageUrl = URL(string: recipe.image) {
+            recipeImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "Recipe's Image"))
+            } else {
+                print("Invalid image URL")
             }
-        } catch {
-            print("Error saving recipe, \(error)")
-        }
+        recipeName.text = recipe.name
+        timeToCook.text = recipe.requiredTime
     }
 }

@@ -12,6 +12,8 @@ import GoogleSignIn
 
 class SignupViewModel {
     private let databaseManager = DatabaseManager.shared
+    weak var delegate: AuthenticationDelegate?
+    
     func signUp(email: String, password: String, confirmPassword: String, userName: String, btnImage: UIImage, completion: @escaping(Bool, String?) -> Void) {
         if btnImage == UIImage(systemName: "checkmark.square") {
             if password == confirmPassword {
@@ -25,6 +27,7 @@ class SignupViewModel {
                                     if let error = error {
                                         completion(false, "Error creating user document: \(error.localizedDescription)")
                                     } else {
+                                        self.delegate?.signUpDidSucceed(user: User(uid: userUID, email: email, userName: userName))
                                         completion(true, nil)
                                     }
                                 }
@@ -72,11 +75,27 @@ class SignupViewModel {
                 // Sign in with Firebase using the Google credential
                 Auth.auth().signIn(with: credential) { authResult, error in
                     if let error = error {
+                        self.delegate?.authenticationDidFail(withError: error)
                         completion(false, "Firebase Sign-In Error: \(error.localizedDescription)")
                     } else {
-                        completion(true, nil)
+                        //completion(true, nil)
+                        let userName = user.profile?.name ?? "Google User"
+                        guard let userUID = authResult?.user.uid else {
+                            completion(false, "Failed to get user UID.")
+                            return
+                        }
+                        self.databaseManager.createUser(withUID: userUID, userName: userName) { error in
+                            if let error = error {
+                                completion(false, "Error creating user document: \(error.localizedDescription)")
+                                self.delegate?.authenticationDidFail(withError: error)
+                            } else {
+                                self.delegate?.signUpDidSucceed(user: User(uid: userUID, email: user.profile?.email ?? "", userName: userName))
+                                completion(true, nil)
+                            }
+                        }
                     }
                 }
+                
             }
     }
 }
