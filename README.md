@@ -52,11 +52,13 @@ This separation means view controllers stay thin (UI + wiring only), business lo
 
 ## 📸 Screenshots
 
-| Splash / Login | Home Feed | Recipe Detail | Saved Recipes |
+| Splash | Login | Signup | Home |
 |---|---|---|---|
-| _add screenshot_ | _add screenshot_ | _add screenshot_ | _add screenshot_ |
+| ![splash](recipe-food-app-screenshots/splash.png) | ![login](recipe-food-app-screenshots/login.png) | ![signup](recipe-food-app-screenshots/signup.png) | ![Home](recipe-food-app-screenshots/home.png) |
 
-> Drop your screenshots into a `Screenshots/` folder at the repo root and swap the placeholders above with `![Home](Screenshots/home.png)` etc.
+| Search using filters | Reigon Filter | Recipe Detail | Saved Recipes |
+|---|---|---|---|
+| ![Search using Filters](recipe-food-app-screenshots/filter-serach.png) | ![Reigon Filter](recipe-food-app-screenshots/region-filter.png) | ![Recipe Detail](recipe-food-app-screenshots/recipe-ingredient-screen.png) | ![Saved Recipes](recipe-food-app-screenshots/saved-recipe-screen.png) |
 
 ---
 
